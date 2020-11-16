@@ -1,0 +1,31 @@
+
+@media print {
+  /* invert the display (show/hide) properties of the main */
+  /* aplication component and the printing component       */
+
+  #print {
+    display: block;
+    max-height: 269mm;
+    width: 216mm;
+    font-size: 12px;
+  }
+
+  #noprint {
+    display: none;
+  }
+
+  app-menu {
+      display: none;
+    }
+  
+  Ion-content{
+      display: none;
+  } 
+  
+  app-root{
+    display: none;
+  }
+
+
+}
+

@@ -1,0 +1,57 @@
+<ion-content>
+  <div class="container m-0 p-0">
+    <div class="m-0 p-0">
+      <ion-item color="primary">
+        <ion-label>Crear Cliente</ion-label>
+      </ion-item>
+
+    </div>
+    <div class="p-3">
+      <form [formGroup]="form" class="mb-4" (ngSubmit)="crear()">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre" aria-describedby="">
+          <small class="form-text text-muted">Nombre del Cliente</small>
+        </div>
+        <div class="form-group">
+          <label>Tipo de identificacion</label>
+          <select class="form-control" id="exampleFormControlSelect1" formControlName="identificacion">
+            <option value="C.C">C.C</option>
+            <option value="NIT">NIT</option>
+            <option value="RUT">RUT</option>
+          </select>   
+          <small class="form-text text-muted">Identificacion del Cliente</small>
+        </div>
+        <div class="form-group">
+          <label>Numero de Identificacion</label>
+          <input type="text" class="form-control" formControlName="numero" aria-describedby="">
+          <small class="form-text text-muted">Numero de Identificacion del cliente</small>
+        </div>
+        <div class="form-group">
+          <label>Direccion</label>
+          <input type="text" class="form-control" formControlName="direccion" aria-describedby="">
+          <small class="form-text text-muted">Direccion del Cliente</small>
+        </div>
+        <div class="form-group" *ngIf="!edit">
+          <label>Telefono</label>
+          <input type="text" class="form-control" formControlName="telefono" aria-describedby="">
+          <small class="form-text text-muted">Telefono del cliente</small>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" aria-describedby="">
+          <small class="form-text text-muted">Email del cliente</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Ciudad</label>
+          <input type="text" class="form-control" formControlName="ciudad" aria-describedby="">
+        </div>     
+      
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid"  *ngIf="!edit">Crear Cliente</button>
+      </form>
+
+
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12" text-center>
+        <ion-card>
+          <img [src]="ImagenTemp" alt="" class="img-fluid">            
+        </ion-card>
+        <div class="text-center">
+          <label class="m-0">Choose Photo</label>
+          <div class="d-flex flex-row justify-content-center upload-btn-wrapper">
+            <ion-button color="medium" class="p-0">+</ion-button>
+            <input type="file" name="myfile" #fileinput (change)="seleccionImagen($event.target.files[0])" />
+          </div>
+        </div>   
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" text-center>
+        <div class="text-center mt-3">
+          <ion-item button [disabled]="!file" color="primary" text-center lines=none (click)="uploadFile()">
+            <ion-label class="text-center">Upload</ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

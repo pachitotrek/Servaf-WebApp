@@ -1,0 +1,195 @@
+<ion-content>
+  <div class="container-fluid m-0 p-0">
+    <ion-toolbar color="dark">
+      <ion-title>Crear una Nueva Orden de Entrada</ion-title>
+    </ion-toolbar>
+  
+    <form [formGroup]="form">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Consecutivo</label>
+              <div class="col-sm-4">
+                <input type="number" formControlName="orden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+              </div>
+            </div>
+          </div>  
+          <div class="col-sm-6">
+            <ion-item>
+                <ion-label>Clientes Actuales</ion-label>
+                <ionic-selectable formControlName="cliente"  itemValueField="_id" itemTextField="nombre" [items]="clientes"
+                  [canSearch]="true" (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>  
+          </div>
+          <div class="col-sm-2">
+            <ion-item button (click)="addcliente()">
+              <ion-label>Crear Nuevo cliente</ion-label>
+            </ion-item>
+          </div>
+        </div>
+        <div class="row">
+          <ion-toolbar color="dark">
+            <ion-title>Informacion Normativa</ion-title>
+          </ion-toolbar>
+          <ion-toolbar>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>1.Norma de Referencia</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="norma" (ionChange)="setNorma($event.target.value)" >
+                      <ion-select-option *ngFor="let n of normas" [value]="n.norma">{{n.norma}}</ion-select-option>                      
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>2.Caudal permanente [m3/h]</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="q3">                
+                      <ion-select-option *ngFor="let f of norma.caudal" [value]="f">{{f}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>3.Clase de Precision</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="precision">
+                      <ion-select-option *ngFor="let p of norma.precision" [value]="p">{{p}}</ion-select-option>                     
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <label class="col-sm-6 mt-2 ml-0 p-0">4.Presion máxima permisible [bar]</label>
+                    <div class="col-sm-6 mt-1">
+                      <input type="number" formControlName="pmaxp" class="form-control" id="exampleInputEmail1" value="10"
+                        aria-describedby="emailHelp">
+                    </div>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>5.Pérdida de presion [bar]</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="pperdida">                  
+                      <ion-select-option *ngFor="let pp of norma.ppresion" [value]="pp">{{pp}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>6.Rango de medicion (Q3/Q1)</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="q3q1">                  
+                      <ion-select-option *ngFor="let r of norma.rango" [value]="r">{{r}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>7.Q2/Q1</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="q2q1">                  
+                      <ion-select-option  value="1.6">1.6</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>8.Clase de Temperatura</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="clasetemp">                  
+                      <ion-select-option *ngFor="let t of norma.temp" [value]="t">{{t}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>9.Sensibilidad aguas arriba</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="aguasarriba">                  
+                      <ion-select-option *ngFor="let wa of norma.swa" [value]="wa">{{wa}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col-sm-6">
+                  <ion-item>
+                    <ion-label>10.Sensibilidad aguas abajo</ion-label>
+                    <ion-select placeholder="Seleccione Una" formControlName="aguasabajo">                  
+                      <ion-select-option *ngFor="let wd of norma.swd" [value]="wd">{{wd}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+          </ion-toolbar>
+          <ion-toolbar color="dark">
+            <ion-title>Informacion metrologica</ion-title>
+          </ion-toolbar>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-4 m-0 p-0">
+                <ion-item>
+                  <ion-label>8.Tipo de Indicador</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="tipo">              
+                    <ion-select-option *ngFor="let item of ind" [value]="item">{{item}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="col-sm-4 m-0 p-0">
+                <ion-item>
+                  <ion-label>9.Principio Fisico</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="principio">                
+                    <ion-select-option *ngFor="let item of prf" [value]="item">{{item}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="col-sm-4 m-0 p-0">
+                <ion-item>
+                  <ion-label>10.Posicion</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="posicion">                  
+                    <ion-select-option *ngFor="let item of pos" [value]="item">{{item}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="col-sm-4 m-0 p-0">
+                <div class="form-group row pl-2">
+                  <label class="col-sm-6 mt-3">11.Diametro Nominal [mm]</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control mt-2" formControlName="diametro">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 m-0 p-0">
+                <ion-item>
+                  <ion-label>12.Rango [m3]</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="rango">                   
+                    <ion-select-option *ngFor="let item of rg" [value]="item">{{item}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="col-sm-4 m-0 p-0">
+                <ion-item>
+                  <ion-label class="col-sm-6 mt-2 ml-0 p-0">13.Resolucion de escala [l]</ion-label>
+                  <input type="number" class="col-sm-6 mt-2 ml-0 p-0" formControlName="escala">
+                  <!-- <ion-select placeholder="Seleccione Una" formControlName="escala">                   
+                    <ion-select-option *ngFor="let item of ind" [value]="item">{{item}}</ion-select-option>
+                  </ion-select> -->
+                </ion-item>
+              </div>
+            </div>
+          </div>  
+        </div>
+  
+      </div>
+
+      <ion-toolbar color="dark" class="pr-3">
+
+        <ion-button (click)="save()" [disabled]="!form.valid" expand="block" color="light" slot="end" >
+          Siguiente
+        </ion-button>
+        
+      </ion-toolbar>
+     
+    </form>
+  </div>
+
+
+</ion-content>

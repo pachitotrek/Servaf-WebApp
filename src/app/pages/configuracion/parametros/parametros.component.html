@@ -1,0 +1,146 @@
+<ion-content>
+  <div class="container-fluid m-0 p-0">
+    <ion-toolbar color="dark">
+      <ion-title>Parametros Predeterminados</ion-title>
+    </ion-toolbar>
+    <form [formGroup]="form">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Numero de observaciones por medidor en cada prueba</label>
+                  <div class="col-sm-6">
+                    <input type="number" formControlName="repeticiones" class="form-control"  aria-describedby="emailHelp">
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Coeficiente de expansion termico-volumetrico del material del RVM</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="coef_rvm" aria-describedby="emailHelp"  >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Coeficiente de expansion termico-volumetrico del agua </label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="coef_agua" aria-describedby="emailHelp"  >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Compresibilidad del agua (kPa-1)</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="compre_agua" aria-describedby="emailHelp"  >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Incertidumbre de Coeficiente de expansion termico-volumetrico del material RVM</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="incertidumbre_rvm" aria-describedby="emailHelp"  >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Incertidumbre de Coeficiente de expansion termico-volumetrico del agua (C)</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="incertidumbre_agua" aria-describedby="emailHelp"  >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <label class="col-sm-6 mt-2">Incertidumbre de compresibilidad del agua (KPa) Numero de observaciones por medidor en cada prueba</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" formControlName="incertidumbre_compre_agua" aria-describedby="emailHelp" >
+                  </div>
+                </div>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Usar Codigos internos para medidores?</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="codigos">
+                    <ion-select-option value="Si">SI</ion-select-option>
+                    <ion-select-option value="No">NO</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Usar Archivo excel para la salida de codigo de barras?</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="excel">
+                    <ion-select-option value="Si">SI</ion-select-option>
+                    <ion-select-option value="No">NO</ion-select-option>                  
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Habilitar registro de depuracion de resultados?</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="registro">
+                    <ion-select-option value="Si">SI</ion-select-option>
+                    <ion-select-option value="No">NO</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+    
+        </div>
+        <div class="row mb-5">
+          <div class="col-sm-12">
+            <ion-item button color="primary" text-center (click)="update()">
+              <ion-label>Guardar</ion-label>
+            </ion-item>
+          </div>
+        </div>
+  
+      </div>
+    </form>
+  </div>
+
+</ion-content>

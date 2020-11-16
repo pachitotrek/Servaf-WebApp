@@ -1,0 +1,130 @@
+<ion-content>
+  <div class="container-fluid m-0 p-0">
+    <ion-toolbar color="dark">
+      <ion-title>Instrumentos Predeterminados</ion-title>
+    </ion-toolbar>
+    <form  [formGroup]="form" *ngIf="state">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Caudalimetro</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="caudal">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>R.V.M</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="rvm">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Temperatura del R.V.M</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="temprvm">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Temperatura de entrada del Agua</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="t_entrada_agua">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Tiempo (Cronometro)</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="tiempo">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Temperatura ambiente</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="temp_ambiente">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Humedad Relativa</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="humedad">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Presion de entrada</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="presion_entrada">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <ion-item>
+                  <ion-label>Presion de Salida</ion-label>
+                  <ion-select placeholder="Seleccione Una" formControlName="presion_salida">
+                    <ion-select-option *ngFor="let a of instrumentos" [value]="a._id">{{a.patron}}</ion-select-option>                 
+                  </ion-select>
+                </ion-item>
+              </div>          
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <ion-item button color="primary" text-center (click)="update()">
+              <ion-label>Guardar</ion-label>
+            </ion-item>
+          </div>
+        </div>
+  
+      </div>
+    </form>
+  </div>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+<app-menu></app-menu>
+</ion-header>
+<ion-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3" *ngFor="let item of menu">
+                <ion-card color="primary" (click)="nav(item.nav)"> 
+                    <ion-card-header>                       
+                        <ion-card-title>{{item.titulo}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{item.descripcion}}
+                    </ion-card-content>
+                </ion-card>
+            </div>       
+        </div>
+    </div>  
+
+
+</ion-content>

@@ -1,0 +1,45 @@
+<table class="table">
+  <thead class="bg-info">
+    <tr>
+      <th scope="col">Numero de Serie</th>
+      <th scope="col">Marca Comercial</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Volumen Inicial</th>
+      <th scope="col">Volumen Final</th>
+      <th scope="col">Guardar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="status">
+      <th scope="row">{{item.serie}}</th>
+      <td>{{item.marca?.titulo}}</td>
+      <td>{{item.modelo?.titulo}}</td>
+      <td style="max-width: 130px;" text-center>
+        <div class="input-group">
+          <input type="number" class="form-control"
+            [(ngModel)]="inicial" [disabled]="!state">
+          <div class="input-group-append">
+            <span class="input-group-text">Litros</span>
+          </div>
+        </div>
+      </td>
+      <td style="max-width: 130px;" text-center>
+        <div class="input-group">
+          <input type="number" class="form-control"
+           [(ngModel)]="final" [disabled]="!state">
+          <div class="input-group-append">
+            <span class="input-group-text">Litros</span>
+          </div>
+        </div>
+      </td>
+      <td style="max-width: 130px;" text-center>
+        <ion-button (click)="edit()" size="small" color="warning">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="set()" size="small" color="primary">
+          <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </td>
+    </tr>
+  </tbody>
+</table>

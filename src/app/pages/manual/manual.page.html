@@ -1,0 +1,30 @@
+<ion-header>
+    <app-menu></app-menu>
+</ion-header>
+
+<ion-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3" *ngFor="let item of items">
+                <ion-card color="primary" style="max-width: 350px;">
+                    <ion-card-header>
+                        <ion-card-subtitle>{{item.seccion}}</ion-card-subtitle>
+                        <ion-card-title>{{item.titulo}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <div>
+                            <video width="300" controls>
+                                <source [src]="item.imagen | imagen:'video'" type="video/mp4">                         
+                                Your browser does not support HTML video.
+                            </video>                        
+
+                        </div>
+
+                        {{item.descripcion}}
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

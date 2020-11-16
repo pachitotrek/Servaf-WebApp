@@ -1,0 +1,121 @@
+<ion-content>
+  <div class="container-fluid m-0 p-0">
+    <ion-toolbar color="dark">
+      <ion-title>Informacion General</ion-title>
+    </ion-toolbar>    
+      <div class="container-fluid" *ngIf="state">
+        <div class="row">      
+          <div class="col-sm-6" style="border:1px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13))))">
+            <div class="row p-1 ">
+              <label class="col-sm-6 ml-3 p-1">Consecutivo</label>
+              <div class="col-sm-3">
+                <input type="number" [value]="datos.orden"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+              </div>
+            </div>            
+          </div>
+          <div class="col-sm-6" style="border:1px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13))))">
+            <div class="row p-1 ">
+              <label class="col-sm-6 ml-3 p-1">Tipo de Prueba</label>
+              <div class="col-sm-3">
+                <input type="text" [value]="tipo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+              </div>
+            </div>            
+          </div>              
+        </div> 
+        <div class="row">
+          <ion-toolbar color="dark">
+            <ion-title>Medidores Disponibles</ion-title>
+          </ion-toolbar>
+          <div class="col-sm-12 p-3" text-center>
+            <div>
+              <table class="table">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Numero de Serie</th>                
+                    <th scope="col">Año de Fabricacion</th>
+                    <th scope="col">Marca Comercial</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Agregar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of medidores">
+                    <th scope="row">{{item.serie}}</th>
+                    <td>{{item.fabricacion}}</td>
+                    <td>{{item.marca}}</td>
+                    <td>{{item.modelo}}</td>
+                    <td style="max-width: 130px;" text-center>                 
+                      <ion-button (click)="push(item)" size="small" color="primary">
+                        <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                      </ion-button>
+                    </td>
+                  </tr>             
+                </tbody>           
+              </table> 
+  
+              <!-- <ion-toolbar color="dark" class="pr-3">
+                <ion-button (click)="add()"  expand="block" color="light" slot="end" >
+                 Agregar
+                </ion-button>
+                <ion-button (click)="continue()"  expand="block" color="success" slot="end" >
+                  Siguiente
+                 </ion-button>
+    
+                
+              </ion-toolbar>       -->
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row">
+          <ion-toolbar color="dark">
+            <ion-title>Medidores Selecionados</ion-title>
+          </ion-toolbar>
+          <div class="col-sm-12 p-3" text-center>
+            <div>
+              <table class="table">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Numero de Serie</th>                
+                    <th scope="col">Año de Fabricacion</th>
+                    <th scope="col">Marca Comercial</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Quitar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of seleccionados">
+                    <th scope="row">{{item.serie}}</th>
+                    <td>{{item.fabricacion}}</td>
+                    <td>{{item.marca}}</td>
+                    <td>{{item.modelo}}</td>
+                    <td style="max-width: 130px;" text-center>                 
+                      <ion-button (click)="delete(item)" size="small" color="primary">
+                        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+                      </ion-button>
+                    </td>
+                  </tr>             
+                </tbody>           
+              </table> 
+  
+              <ion-toolbar color="dark" class="pr-3">
+                <!-- <ion-button (click)="add()"  expand="block" color="light" slot="end" >
+                 Agregar
+                </ion-button> -->
+                <ion-button (click)="continue()"  expand="block" color="success" slot="end" >
+                  Siguiente
+                 </ion-button>
+    
+                
+              </ion-toolbar>      
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>  
+  </div>
+</ion-content>      
+

@@ -1,0 +1,36 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!complete">
+        <form action="" [formGroup]="form">
+          <ion-card>
+            <ion-item>
+              <ion-label>Seleccione el Tipo de Prueba </ion-label>
+              <ion-select placeholder="Seleccionar" formControlName="tipo">
+                <ion-select-option *ngFor="let p of pruebas" [value]="p.tipo">{{p.tipo}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card>
+          <ion-toolbar>
+            <ion-item button text-center color="primary" (click)="nav()">
+              <ion-label>Empezar</ion-label>
+            </ion-item>
+          </ion-toolbar> 
+        </form>
+      </div>
+      <div class="col-sm-12" *ngIf="complete">
+        <div>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Orden de trabajo Terminada</h1>
+              <p class="lead">Haz completado la orden de trabajo . Procede a cerrar la orden para poder generar los certificados</p>
+            </div>
+          </div>
+        </div>       
+        <ion-item button color="primary" text-center class="mt-5" (click)="cerrar()">
+          <ion-label>Cerrar Orden</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content>

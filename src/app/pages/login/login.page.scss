@@ -1,0 +1,74 @@
+.textura{
+    background-image: url('/assets/images/intro_color.jpg');
+    height: 100vh;    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+.fondo{
+    background-color: var(--ion-color-primary);
+    height: 100vh;  
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-content: center;
+    padding: 2vw;
+}
+.img{
+    height: 25vh;
+    width: auto;
+    margin-top: 10vh;
+}
+.img-2{
+    height: 8vh;
+    width: auto;
+}
+.span{
+    font-size: 8px;
+}
+.div{
+    display: flex;
+    flex-direction: column;
+}
+.div-3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}
+.div-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center; 
+}
+
+.box{
+    // margin-top: 10vh;    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    // margin-bottom: 15vh;  
+}
+.box-card{
+    max-width: 450px;
+    width: 350px;
+    background-color: var(--ion-color-primary);
+    border-radius: 10px;
+}
+.h5{
+    font-size: 15px;
+  font-weight: bold;
+}
+.span-2{
+    font-size: 12px;
+}
+ion-item{
+    --background:transparent;
+}
+
+
+

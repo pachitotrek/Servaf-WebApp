@@ -1,0 +1,142 @@
+<ion-content>
+  <div class="container-fluid fondo">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="carta_landscape">
+
+          <!--Primer tabla-->
+
+          <table class="Table1 mb-3">
+            <tbody>
+              <tr class="border-esp">
+                <td colspan="3" rowspan="3">
+                  <img src="/assets/images/servaf.png" class="logo1" alt="Logo de SERVAF">
+                </td>
+                <td colspan="6" rowspan="3" class="upper">ORDEN DE ENTRADA</td>
+                <td class="border-right-0 text-left">Código:</td>
+                <td colspan="3" class="upper text-left">LCM-FOR-DT-045</td>
+              </tr>
+              <tr class="border-esp">
+                <td class="border-right-0 text-left">Fecha:</td>
+                <td colspan="3" class="upper text-left">2018 Junio 13</td>
+              </tr>
+              <tr class="border-esp">
+                <td class="border-right-0 text-left">Página:</td>
+                <td colspan="3" class="upper text-left">1 de 1</td>
+              </tr>
+              <tr>
+                <td colspan="13" class="border-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN BLANCO</td>
+              </tr>
+              <tr>
+                <td class="border-0 text-right">N° de Orden:</td>
+                <td colspan="4" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">{{orden.orden}}</td>
+                <td colspan="3" class="border-0"></td>
+                <td class="border-0 text-right">Encargado:</td>
+                <td colspan="4" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">{{orden.creado?.nombre}} {{orden.creado?.apellido}}</td>
+              </tr>
+              <tr>
+                <td class="border-0 text-right">Cliente:</td>
+                <td colspan="4" class="border-right-0 border-left-0 border-top-0 border-bottom text-left upper">{{orden.cliente?.nombre}}</td>
+                <td colspan="3" class="border-0"></td>
+                <td class="border-0 text-right">Fecha:</td>
+                <td colspan="4" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">{{orden.fecha | date:'yyyy / MM / dd'}}</td>
+              </tr>
+              <tr>
+                <td colspan="13" class="border-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN BLANCO</td>
+              </tr>
+              <tr>
+                <td>Consecutivo</td>
+                <td>Serial</td>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Año</td>
+                <td>Posición</td>
+                <td>Tipo</td>
+                <td>Indicador</td>
+                <td>Diámetro<br>[mm]</td>
+                <td>Pérdida de presión<br>[bar]</td>
+                <td>Presión nominal<br>[bar]</td>
+                <td>Rango<br>[m3]</td>
+                <td>División de escala [l]</td>
+              </tr>
+              <tr>
+                <td colspan="13" class="border-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN BLANCO</td>
+              </tr>
+              <!-- <tr>
+                <td class="border-0"></td>
+                <td colspan="2" class="border-0 text-left">Norma</td>
+                <td colspan="3" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">NTC 4064:2016
+                </td>
+              </tr>
+              <tr>
+                <td class="border-0"></td>
+                <td colspan="2" class="border-0 text-left">Caudal permanente [m3/h]</td>
+                <td colspan="3" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">2.5</td>
+              </tr>
+              <tr>
+                <td class="border-0"></td>
+                <td colspan="2" class="border-0 text-left">Clase metrológica</td>
+                <td colspan="3" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">2</td>
+              </tr>
+              <tr>
+                <td class="border-0"></td>
+                <td colspan="2" class="border-0 text-left">Rango de medición</td>
+                <td colspan="3" class="border-right-0 border-left-0 border-top-0 border-bottom text-left">160.0</td>
+              </tr> -->
+              <tr>
+                <td colspan="13" class="border-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN BLANCO</td>
+              </tr>
+              <tr *ngFor="let item of medidores">
+                <td class="theadclaro">{{item.orden}}</td>
+                <td class="theadclaro">{{item.datos?.serie}}</td>
+                <td class="theadclaro upper">{{item.datos.marca.titulo}}</td>
+                <td class="theadclaro upper">{{item.datos.modelo.titulo}}</td>
+                <td class="theadclaro">{{item.datos?.fabricacion}}</td>
+                <td class="theadclaro">{{item.metrologicas?.posicion}}</td>
+                <td class="theadclaro">{{item.metrologicas?.principio}}</td>
+                <td class="theadclaro">{{item.metrologicas?.tipo}}</td>
+                <td class="theadclaro">{{item.metrologicas?.diametro}}</td>
+                <td class="theadclaro">0.63</td>
+                <td class="theadclaro">10.0</td>
+                <td class="theadclaro">{{item.metrologicas?.rango}}</td>
+                <td class="theadclaro">{{item.metrologicas?.escala}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="flex-footer m-0 p-0" style="font-size: 9pt; text-align: center;">
+            <table class="Table1">
+              <tbody>
+                <tr>
+                  <td class="thead upper padding">ELABORÓ</td>
+                  <td class="thead upper padding">REVISÓ</td>
+                  <td class="thead upper padding">APROBÓ</td>
+                  <td class="thead upper padding">VERSIÓN</td>
+                </tr>
+                <tr>
+                  <td class="padding upper">LUIS HERNÁN DURÁN GARCÍA</td>
+                  <td class="padding upper">EDGAR FERNANDO LOZANO CALDERÓN</td>
+                  <td class="padding upper">ALVARO TORRES CADENA</td>
+                  <td class="padding upper" rowspan="2">2</td>
+                </tr>
+                <tr>
+                  <td class="padding upper">COORDINADOR LABORATORIO CALIBRACIÓN DE MEDIDORES</td>
+                  <td class="padding upper">DIRECTOR DE PLANEACIÓN Y CALIDAD</td>
+                  <td class="padding upper">GERENTES (S)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+</ion-content>
+        <div class="row" id="noprint">
+          <div class="col-sm-12">
+            <ion-button (click)="print()" expand="block"  shape="round" color="primary">
+              Imprimir
+            </ion-button>
+          </div>
+        </div>

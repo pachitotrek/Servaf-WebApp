@@ -1,0 +1,63 @@
+<ion-content>  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 m-0 p-0">
+        <ion-toolbar color="dark">
+          <ion-title>Ordenes de Trabajo por Calibrar</ion-title>
+        </ion-toolbar>
+      </div>
+      <div class="col-sm-12">
+        <form action="" [formGroup]="form">
+          <ion-item>
+            <ion-label>Desde</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD" placeholder="Seleccionar Fecha" formControlName="inicio"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hasta</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD" placeholder="Seleccionar Fecha" formControlName="fin"></ion-datetime>
+          </ion-item>
+  
+          <ion-item button (click)="get()" color="primary" text-center>
+            <ion-label>Buscar</ion-label>
+          </ion-item>
+        </form>
+      </div>
+      <div class="col-sm-12 m-0 p-0">
+        <div class="container">
+          <ion-card text-center>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"># Orden</th>
+                  <th scope="col">Tipo de Orden</th>
+                  <th scope="col">Programada para </th>                
+                  <th scope="col">Hora de Inicio</th>
+                  <th scope="col">Fecha de Creacion</th>
+                  <th scope="col">Gestionar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ordenes">
+                  <th scope="row">{{item.orden}}</th>
+                  <td *ngIf="item.tipo==1">Calibracion</td>
+                  <td *ngIf="item.tipo==2">Perdida de Carga</td>
+                  <td *ngIf="item.tipo==3">Presion Hidroestatica</td>
+                  <td>{{item.fecha_programacion | date:'yyyy-MM-dd'}}</td>
+                  <td>{{item.hora_programacion | date:'hh:mm ss a'}}</td>                             
+                  <td>{{item.fecha | date:'yyyy-MM-dd'}}</td>
+                  <td style="max-width: 130px;" text-center>
+                    <ion-button (click)="open(item._id)" size="small" color="success">
+                      <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                    </ion-button>
+                  </td>
+                </tr>            
+              </tbody>
+            </table>        
+          </ion-card>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

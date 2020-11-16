@@ -1,0 +1,185 @@
+<ion-content>
+  <form [formGroup]="form" class="mb-4">
+    <div class="container-fluid m-0 p-4" *ngIf="state">
+      <div class="row">
+        <div class="col-sm-12">
+          <ion-item color="primary" lines="none">
+            <ion-label class="list-ios" style="margin: 0px !important;">Informacion Tecnica</ion-label>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>1.Norma de Referencia</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="norma"
+              (ionChange)="setNorma($event.target.value)">
+              <ion-select-option *ngFor="let n of normas" [value]="n.norma">{{n.norma}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>2.Caudal permanente [m3/h]</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="q3">
+              <ion-select-option *ngFor="let f of norma.caudal" [value]="f">{{f}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        
+
+        <div class="col-sm-12" *ngIf="uno">
+          <ion-item lines="none">
+            <ion-label>3.Clase de Precision</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="precision">
+              <ion-select-option *ngFor="let p of norma.precision" [value]="p">{{p}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="!tres">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">4.Presion máxima permisible [bar]</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="pmaxp" class="form-control" id="exampleInputEmail1" value="10"
+                aria-describedby="emailHelp">
+            </div>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>5.Pérdida de presion [bar]</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="pperdida">
+              <ion-select-option *ngFor="let pp of norma.ppresion" [value]="pp">{{pp}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="!tres" >
+          <ion-item lines="none">
+            <ion-label>6.Rango de medicion (Q3/Q1)</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="q3q1">
+              <ion-select-option *ngFor="let r of norma.rango" [value]="r">{{r}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="!tres" >
+          <ion-item lines="none">
+            <ion-label>7.Q2/Q1</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="q2q1">
+              <ion-select-option value="1.6">1.6</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="!tres">
+          <ion-item lines="none">
+            <ion-label>8.Clase de Temperatura</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="clasetemp">
+              <ion-select-option *ngFor="let t of norma.temp" [value]="t">{{t}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="uno" >
+          <ion-item lines="none">
+            <ion-label>9.Sensibilidad aguas arriba</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="aguasarriba">
+              <ion-select-option *ngFor="let wa of norma.swa" [value]="wa">{{wa}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="uno">
+          <ion-item lines="none">
+            <ion-label>10.Sensibilidad aguas abajo</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="aguasabajo">
+              <ion-select-option *ngFor="let wd of norma.swd" [value]="wd">{{wd}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="tres">
+          <ion-item lines="none">
+            <ion-label>11.Identificador [ N ( m3/h) ]</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="identificador">
+              <ion-select-option *ngFor="let f of norma.caudal" [value]="f">{{f}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="tres">
+          <ion-item lines="none">
+            <ion-label>12.Clase Metrologica</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="clase">
+              <ion-select-option *ngFor="let c of clase" [value]="c">{{c}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12" *ngIf="tres">        
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">13.Presion Nominal [bar]</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="pnominal" class="form-control" id="exampleInputEmail1" value=10
+                aria-describedby="emailHelp">
+            </div>
+          </ion-item>
+        </div>
+
+
+
+
+        <div class="col-sm-12">
+          <ion-item color="primary" lines="none">
+            <ion-label class="list-ios" style="margin: 0px !important;">Informacion Metrologica</ion-label>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>8.Tipo de Indicador</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="tipo">
+              <ion-select-option *ngFor="let item of ind" [value]="item">{{item}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>9.Principio Fisico</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="principio">
+              <ion-select-option *ngFor="let item of prf" [value]="item">{{item}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>10.Posicion</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="posicion">
+              <ion-select-option *ngFor="let item of pos" [value]="item">{{item}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">11 Diametro Nominal [mm].</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="diametro" class="form-control" aria-describedby="emailHelp">
+            </div>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>12.Rango [m3]</ion-label>
+            <ion-select placeholder="Seleccione Una" formControlName="rango">
+              <ion-select-option *ngFor="let item of rg" [value]="item.value">{{item.titulo}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">13.Division de escala [l]</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="escala" class="form-control">
+            </div>
+          </ion-item>
+        </div>
+      </div>
+   
+      <div class="col-sm-12 mt-2">
+        <ion-item button (click)="crear()" [disabled]="!form.valid" color="primary" text-center>
+          <ion-label>Actualizar Medidor</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+</ion-content>

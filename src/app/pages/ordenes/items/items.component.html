@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 m-0 p-0">
+        <ion-toolbar color="dark">
+          <ion-title>Asocie los Medidores de la Orden</ion-title>
+        </ion-toolbar>
+        <div>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Numero de Serie</th>                
+                <th scope="col">Año de Fabricacion</th>
+                <th scope="col">Marca Comercial</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of medidores">
+                <th scope="row">{{item.serie}}</th>
+                <td>{{item.fabricacion}}</td>
+                <td>{{item.marca}}</td>
+                <td>{{item.modelo}}</td>
+                <td style="max-width: 130px;" text-center>                 
+                  <ion-button (click)="delete(item._id)" size="small" color="danger">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>             
+            </tbody>           
+          </table>   
+          <ion-toolbar color="dark" class="pr-3">
+            <ion-button (click)="add()"  expand="block" color="light" slot="end" >
+             Agregar
+            </ion-button>
+            <ion-button (click)="continue()"  expand="block" color="success" slot="end" >
+              Siguiente
+             </ion-button>
+
+            
+          </ion-toolbar>      
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

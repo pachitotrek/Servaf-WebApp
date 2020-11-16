@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="medium">
+          <ion-label>Resumen de la Orden</ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Banco de Calibracion</th>
+              <th scope="col">Encargado</th>
+              <th scope="col">Ordenante</th>
+              <th scope="col">Fecha de Realizacion</th>
+              <th scope="col">Duracion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{orden.orden}}</th>
+              <td>{{orden.status}}</td>
+              <td>{{orden.banco?.identificacion}}</td>
+              <td>{{orden.encargado?.nombre}}  {{orden.encargado?.apellido}}</td>
+              <td></td>
+              <td>{{orden.fecha_programacion | date:'yyy - MM -dd'}} {{orden.hora_programacion | date:'hh:mm ss a'}} </td>
+              <td>{{orden.duracion}} minutos</td>
+            </tr>         
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="primary">
+          <ion-label>Medidores Calibrados</ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-12" *ngFor="let item of medidores">
+        <app-medidor [id]="item"></app-medidor>
+      </div>
+    </div>
+  </div>
+</ion-content>

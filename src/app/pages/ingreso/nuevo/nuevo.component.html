@@ -1,0 +1,104 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 mt-3">
+        <ion-item color="primary">
+          <ion-label>Nueva Orden de Entrada</ion-label>
+        </ion-item>
+        <table class="table">
+          <thead>
+            <tr text-center>              
+              <th scope="col">Persona que Ingresa</th>
+              <th scope="col">No de Medidores</th>
+              <th scope="col">Fecha</th>                
+            </tr>
+          </thead>
+          <tbody>
+            <tr text-center>
+              
+              <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+              <td>{{medidores.length}}</td>
+              <td>{{fecha | date:'yyyy-MM-dd'}}</td>
+            </tr>         
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-12">
+        <form action="" [formGroup]="form">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <ion-item lines="none"> 
+                  <ion-label>Cliente</ion-label>
+                  <ionic-selectable formControlName="cliente" itemValueField="_id" itemTextField="nombre" [items]="clientes"
+                    [canSearch]="true" (onChange)="portChange($event)">
+                  </ionic-selectable>
+                </ion-item>
+              </div>
+              <div class="col-sm-6">
+                <ion-item button (click)="addcliente()" lines="none" shape="round">
+                  <ion-label>Crear Nuevo cliente</ion-label>
+                </ion-item>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-12">
+        <ion-item color="primary">
+          <ion-label>Ingrese Nuevos Medidores</ion-label>
+          <ion-button (click)="launch()" expand="block" slot="end" color="light" size="small" class="mr-2">
+            Agregar
+          </ion-button>
+        </ion-item>
+      </div>
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Serial</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Año</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Apto</th>
+              <th scope="col">Gestionar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of medidores">
+              <th scope="row">{{item.orden}}</th>
+              <td>{{item.datos.serie}}</td>
+              <td>{{item.datos.marca?.titulo}}</td>
+              <td>{{item.datos.modelo?.titulo}}</td>
+              <td>{{item.datos.fabricacion}}</td>
+              <td>{{item.metrologicas.principio}}</td>
+              <td *ngIf="item.estado=='true'">Si</td>
+              <td *ngIf="item.estado=='false'">No</td>
+              <td class="p-0">
+                <ion-button (click)="delete(item._id)" size="small" color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-12">
+        <ion-item button color="primary" text-center (click)="close()" *ngIf="medidores.length > 0" [disabled]="!form.valid">
+          <ion-label>Terminar Ingreso</ion-label>
+        </ion-item>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+</ion-content>

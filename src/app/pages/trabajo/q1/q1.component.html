@@ -1,0 +1,159 @@
+<div class="container-fluid">
+  <form action="" [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <ion-item>
+          <ion-label>Prueba {{tipo}} </ion-label>              
+        </ion-item>
+      </div>
+      <div class="col-sm-6">
+        <ion-item>
+          <ion-label>Repeticion No {{rp}} </ion-label>              
+        </ion-item>
+      </div>
+    </div>
+    <div class="row" *ngIf="uno" >
+      <div class="col-sm-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Caudal</span>
+          </div>
+          <input type="number" class="form-control" formControlName="caudal">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">L/h</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Humedad. Relativa</span>
+          </div>
+          <input type="number" class="form-control" formControlName="humedad">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">%</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Presion Entrada</span>
+          </div>
+          <input type="number" class="form-control" formControlName="pentrada">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">bar</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Presion Salida</span>
+          </div>
+          <input type="number" class="form-control" formControlName="psalida">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">bar</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp. Ambiente</span>
+          </div>
+          <input type="number" class="form-control" formControlName="temp">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp Agua</span>
+          </div>
+          <input type="number" class="form-control" formControlName="tempagua">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp RVM</span>
+          </div>
+          <input type="number" class="form-control" formControlName="temprvm">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Volumen RVM</span>
+          </div>
+          <input type="number" class="form-control" formControlName="volumenrvm">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">ml</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <ion-item button text-center color="primary" (click)="save()" *ngIf="!dos" [disabled]="!form.valid">
+          <ion-label>Guardar</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="col-sm-12" *ngIf="dos">
+    <div *ngFor="let item of medidores">
+      <app-me [item]="item" [orden]=orden._id></app-me>
+    </div>
+  </div>
+
+  <form [formGroup]="form2" *ngIf="tres">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-card>
+          <ion-card-header>           
+            <ion-card-title>Duracion de la prueba</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4 mt-3">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Horas</span>
+                    </div>
+                    <input type="number" formControlName="horas" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4 mt-3">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Minutos</span>
+                    </div>
+                    <input type="number" formControlName="minutos" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4 mt-3">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Segundos</span>
+                    </div>
+                    <input type="number" class="form-control" formControlName="segundos">
+                  </div>
+                </div>
+              </div>
+            </div>            
+
+          </ion-card-content>
+        </ion-card>
+
+      </div>   
+      <div class="col-sm-12">
+        <ion-item button text-center color="primary" (click)="savetime()" [disabled]="!form2.valid" >
+          <ion-label>Continuar</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+
+</div>

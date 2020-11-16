@@ -1,0 +1,70 @@
+table{
+    font-size: 12px;
+}
+.fuente{
+    font-size: 12px;
+}
+thead{
+    border-color: white;
+    background-color: white;
+}
+tbody td.c{
+    background-color: lightgray;    
+    border-style: ridge;
+    border-width: 0.5px;
+    border-color: black;
+}
+tbody td{
+    background-color: white;    
+    border-style: ridge;
+    border-width: 0.5px;
+    border-color: black;
+}
+
+tbody tr.b td{      
+  border-color: white;
+  background-color: white;
+}
+
+.a{
+    border-top: 0.5px black solid; 
+}
+.do{
+    border-bottom: 0.5px black solid; 
+}
+
+.i{
+    border-left: 0.5px black solid; 
+}
+
+.d{
+    border-right: 0.5px black solid; 
+}
+
+#print {
+    display: none;
+  }
+
+
+@media print {
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+  
+    #print {
+      display: block;
+      height: 279mm;
+      width: 216mm;
+      font-size: 12px;
+    }
+  
+    #noprint {
+      display: none;
+    }
+
+    app-menu {
+        display: none;
+      }
+
+
+  }
+

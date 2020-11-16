@@ -1,0 +1,1096 @@
+<ion-content id="noprint">
+  <div class="container" *ngIf="inf" id="noprint">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-card color="primary" text-center>
+          <h3>Haz Completado todas las pruebas pertenecientes a la orden. Puedes cerrar la orden y generar el informe
+          </h3>
+        </ion-card>
+
+        <ion-toolbar>
+          <ion-item button text-center color="success" (click)="cerrar()">
+            <ion-label>Cerrar Orden y Generar Informe</ion-label>
+          </ion-item>
+        </ion-toolbar>
+
+      
+
+      </div>
+    </div>
+  </div>
+ 
+
+  <div class="container" *ngIf="ready" id="noprint">
+    <div class="row">
+
+      <div class="col-sm-12 p-4" >
+        <div class="d-flex flex-row justify-content-between fuente">
+          <div>
+            <p class="m-0 p-0"> LABORATORIO CALIBRACION DE MEDIDORES </p>
+            <p class="m-0 p-0">EMPRESA DE SERVICIOS DE FLORENCIA S.A E.S.P</p>
+            <p class="m-0 p-0"> SERVAF S.A E.S.P.</p>
+            <p class="m-0 p-0"> NIT: 800.169.470-7 </p>
+          </div>
+          <div class="d-flex flex-row pr-5">
+            <div class="d-flex">
+              <img src="/assets/images/servaf.png" alt="" height="30">
+            </div>
+            <div class="d-flex flex-column">
+              <img src="/assets/images/onac.png" alt="" height="30">
+              <div class="text-center">
+                <p class="m-0 p-0"> Acreditado ISO/IEC 17025:2005</p>
+                <p class="m-0 p-0"> 16-LAC-024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table>
+          <tbody class="text-center">
+            <tr>
+              <td t="z" colspan="5" id="sjs-A7"></td>
+              <td colspan="7" t="s" id="sjs-F7" class="c a">CERTIFICADO DE CALIBRACION No</td>
+              <td colspan="5" t="z" id="sjs-M7"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A8"></td>
+              <td colspan="16" t="s" id="sjs-B8" class="c">DATOS DEL SOLICITANTE</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A9"></td>
+              <td colspan="4" t="s" id="sjs-B9" class="c">NOMBRE SOLICITANTE</td>
+              <td colspan="8" t="z" id="sjs-F9">{{entrada.cliente?.nombre}}</td>
+              <td colspan="2" t="s" id="sjs-N9" class="c">FECHA DE EMISION</td>
+              <td colspan="2" t="z" id="sjs-P9">{{orden.fecha | date}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A10"></td>
+              <td colspan="4" t="s" id="sjs-B10" class="c">DIRECCION SOLICITANTE</td>
+              <td colspan="3" t="z" id="sjs-F10">{{entrada.cliente?.direccion}}</td>
+              <td colspan="3" t="s" id="sjs-I10" class="c">FECHA DE RECEPCION</td>
+              <td colspan="2" t="z" id="sjs-L10">{{entrada.fecha | date}}</td>
+              <td colspan="2" t="s" id="sjs-N10" class="c">FECHA DE CALIBRACION</td>
+              <td colspan="2" t="z" id="sjs-P10">{{orden.fecha | date}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A11"></td>
+              <td colspan="4" t="s" id="sjs-B11" class="c">NIT, RUT, C.C:</td>
+              <td colspan="3" t="z" id="sjs-F11">{{entrada.cliente?.numero}}</td>
+              <td colspan="3" t="s" id="sjs-I11" xml:space="preserve" class="c"> INSTRUMENTO A CALIBRAR</td>
+              <td colspan="6" t="z" id="sjs-L11">Medidor de agua potable fria</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A12"></td>
+              <td colspan="16" t="s" id="sjs-B12" class="c">DESCRIPCION DEL INSTRUMENTO A CALIBRAR</td>
+            </tr>
+            <tr>
+              <td></td>
+
+              <td colspan="3" t="s" id="sjs-B13">Serie</td>
+              <td colspan="4" t="s" id="sjs-E13">Marca</td>
+              <td colspan="3" t="s" id="sjs-I13">Modelo</td>
+              <td colspan="2" t="s" id="sjs-L13">Tipo</td>
+              <td colspan="2" t="s" id="sjs-N13">Rango M.</td>
+              <td colspan="2" t="s" id="sjs-P13">Año Fabricación</td>
+            </tr>
+            <tr *ngFor="let m of medidores">
+              <td></td>
+
+              <td colspan="3" t="n" id="sjs-B14">{{m.serie}}</td>
+              <td colspan="4" t="z" id="sjs-E14">{{m.marca}}</td>
+              <td colspan="3" t="z" id="sjs-I14">{{m.modelo}}</td>
+              <td colspan="2" t="z" id="sjs-L14">{{entrada.tipo}}</td>
+              <td colspan="2" t="z" id="sjs-N14">{{entrada.rango}}</td>
+              <td colspan="2" t="z" id="sjs-P14">{{m.fabricacion}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A15"></td>
+              <td colspan="3" t="s" id="sjs-B15">Q3(m3/h)</td>
+              <td colspan="4" t="s" id="sjs-E15">Capacidad Máxima Escala (m3)</td>
+              <td colspan="3" t="s" id="sjs-I15">Div Min Escala (l)</td>
+              <td colspan="2" t="s" id="sjs-L15">Diámetro (mm)</td>
+              <td colspan="4" t="s" id="sjs-N15">Norma Estándar</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A16"></td>
+              <td colspan="3" t="z" id="sjs-B16">{{entrada.q3 | number:'1.0-2'}}</td>
+              <td colspan="4" t="z" id="sjs-E16"></td>
+              <td colspan="3" t="z" id="sjs-I16">{{entrada.escala | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-L16">{{entrada.diametro | number:'1.0-2'}}</td>
+              <td rowspan="3" colspan="4" t="z" id="sjs-N16">{{entrada.norma}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A17"></td>
+              <td colspan="3" t="s" id="sjs-B17">Lectura de Entrada (m3)</td>
+              <td colspan="4" t="s" id="sjs-E17">Clase de Temperatura</td>
+              <td colspan="5" t="s" id="sjs-I17">Clase de Sensibilidad de Flujo</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A18"></td>
+              <td colspan="3" t="z" id="sjs-B18">0</td>
+              <td colspan="4" t="z" id="sjs-E18">{{entrada.clasetemp}}</td>
+              <td colspan="5" t="z" id="sjs-I18">{{entrada.aguasarriba}} / {{entrada.aguasabajo}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A19"></td>
+              <td colspan="16" t="s" id="sjs-B19" class="c">TRAZABILIDAD</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A20"></td>
+              <td colspan="16" t="s" id="sjs-B20" xml:space="preserve">Los patrones utilizados en la calibración de los
+                medidores de agua están trazados a patrones nacionales e internacionales de las magnitudes respectivas.
+                Los cuales se relacionan a continuación al Sistema Internacional. </td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A21"></td>
+              <td colspan="4" t="s" id="sjs-B21">Patrón</td>
+              <td colspan="2" t="s" id="sjs-F21">Código Patrón</td>
+              <td colspan="3" t="s" id="sjs-H21">Certificado de Calibración</td>
+              <td colspan="3" t="s" id="sjs-K21">Fecha de calibración</td>
+              <td colspan="4" t="s" id="sjs-N21">Fuente de Trazabilidad</td>
+            </tr>
+            <tr *ngFor="let c of caudal">
+              <td t="z" id="sjs-A22"></td>
+              <td colspan="4" t="z" id="sjs-B22">{{c.patron}}</td>
+              <td colspan="2" t="z" id="sjs-F22">{{c.codigo}}</td>
+              <td colspan="3" t="z" id="sjs-H22">{{c.certificado}}</td>
+              <td colspan="3" t="z" id="sjs-K22">{{c.fecha_calibracion | date}}</td>
+              <td colspan="4" t="z" id="sjs-N22">{{c.fuente}}</td>
+            </tr>
+            <tr *ngFor="let c of temprvm">
+              <td t="z" id="sjs-A22"></td>
+              <td colspan="4" t="z" id="sjs-B22">{{c.patron}}</td>
+              <td colspan="2" t="z" id="sjs-F22">{{c.codigo}}</td>
+              <td colspan="3" t="z" id="sjs-H22">{{c.certificado}}</td>
+              <td colspan="3" t="z" id="sjs-K22">{{c.fecha_calibracion | date}}</td>
+              <td colspan="4" t="z" id="sjs-N22">{{c.fuente}}</td>
+            </tr>
+            <tr *ngFor="let c of tempagua">
+              <td t="z" id="sjs-A22"></td>
+              <td colspan="4" t="z" id="sjs-B22">{{c.patron}}</td>
+              <td colspan="2" t="z" id="sjs-F22">{{c.codigo}}</td>
+              <td colspan="3" t="z" id="sjs-H22">{{c.certificado}}</td>
+              <td colspan="3" t="z" id="sjs-K22">{{c.fecha_calibracion | date}}</td>
+              <td colspan="4" t="z" id="sjs-N22">{{c.fuente}}</td>
+            </tr>
+
+
+            <tr>
+              <td t="z" id="sjs-A34"></td>
+              <td colspan="16" t="s" id="sjs-B34" class="c">METODO DE CALIBRACION</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A35"></td>
+              <td rowspan="2" colspan="16" t="s" id="sjs-B35">El método empleado es la recolección, del volumen indicado
+                en el medidor con el volumen indicado por un recipiente volumétrico tomado como patrón, de conformidad
+                con el numeral 7.4.2.1 de la NTC-ISO 4064-2:2016.</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A36"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A37"></td>
+              <td colspan="16" t="s" id="sjs-B37" xml:space="preserve">El error relativo es la diferencia entre el
+                volumen
+                registrado en el medidor y el volumen medido en el recipiente volumétrico patrón de trabajo. </td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A38"></td>
+              <td rowspan="4" colspan="6" t="z" id="sjs-B38"></td>
+              <td colspan="10" t="z" id="sjs-H38"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A39"></td>
+              <td t="s" id="sjs-H39">Donde:</td>
+              <td colspan="9" t="s" id="sjs-I39">Vi = Volumen registrado en el medidor como la diferencia entre el
+                volumen
+                inicial y final</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A40"></td>
+              <td t="z" id="sjs-H40"></td>
+              <td colspan="9" t="s" id="sjs-I40" xml:space="preserve">Va = Volumen medido en el recipiente volumétrico
+                patrón </td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A41"></td>
+              <td t="z" id="sjs-H41"></td>
+              <td t="z" id="sjs-I41"></td>
+              <td t="z" id="sjs-J41"></td>
+              <td t="z" id="sjs-K41"></td>
+              <td t="z" id="sjs-L41"></td>
+              <td t="z" id="sjs-M41"></td>
+              <td t="z" id="sjs-N41"></td>
+              <td t="z" id="sjs-O41"></td>
+              <td t="z" id="sjs-P41"></td>
+              <td t="z" id="sjs-Q41"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A42"></td>
+              <td colspan="16" t="s" id="sjs-B42" class="c">CONDICIONES DURANTE LA CALIBRACION</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A43"></td>
+              <td colspan="16" t="s" id="sjs-B43">El promedio de las condiciones ambientales y la temperatura del agua
+                del
+                laboratorio durante el proceso de calibración fueron las siguientes:</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A44"></td>
+              <td rowspan="2" t="z" id="sjs-B44"></td>
+              <td colspan="3" t="s" id="sjs-C44" class="c">Caudal (l/h)</td>
+              <td colspan="3" t="s" id="sjs-F44" class="c">Presión de Entrada (bar)</td>
+              <td colspan="3" t="s" id="sjs-I44" class="c">Presión de Salida (bar)</td>
+              <td colspan="3" t="s" id="sjs-L44" class="c">Temperatura Línea (°C)</td>
+              <td colspan="3" t="s" id="sjs-O44" class="c">Temperatura RVM (°C)</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A45"></td>
+              <td t="s" id="sjs-C45" class="c">Mínimo</td>
+              <td t="s" id="sjs-D45" class="c">Máximo</td>
+              <td t="s" id="sjs-E45" class="c">Promedio</td>
+              <td t="s" id="sjs-F45" class="c">Mínimo</td>
+              <td t="s" id="sjs-G45" class="c">Máximo</td>
+              <td t="s" id="sjs-H45" class="c">Promedio</td>
+              <td t="s" id="sjs-I45" class="c">Mínimo</td>
+              <td t="s" id="sjs-J45" class="c">Máximo</td>
+              <td t="s" id="sjs-K45" class="c">Promedio</td>
+              <td t="s" id="sjs-L45" class="c">Mínimo</td>
+              <td t="s" id="sjs-M45" class="c">Máximo</td>
+              <td t="s" id="sjs-N45" class="c">Promedio</td>
+              <td t="s" id="sjs-O45" class="c">Mínimo</td>
+              <td t="s" id="sjs-P45" class="c">Máximo</td>
+              <td t="s" id="sjs-Q45" class="c">Promedio</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A46"></td>
+              <td t="z" id="sjs-B46"></td>
+              <td t="z" id="sjs-C46"></td>
+              <td t="z" id="sjs-D46"></td>
+              <td t="z" id="sjs-E46"></td>
+              <td t="z" id="sjs-F46"></td>
+              <td t="z" id="sjs-G46"></td>
+              <td t="z" id="sjs-H46"></td>
+              <td t="z" id="sjs-I46"></td>
+              <td t="z" id="sjs-J46"></td>
+              <td t="z" id="sjs-K46"></td>
+              <td t="z" id="sjs-L46"></td>
+              <td t="z" id="sjs-M46"></td>
+              <td t="z" id="sjs-N46"></td>
+              <td t="z" id="sjs-O46"></td>
+              <td t="z" id="sjs-P46"></td>
+              <td t="z" id="sjs-Q46"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A50"></td>
+              <td colspan="2" t="z" id="sjs-B50"></td>
+              <td colspan="2" t="s" id="sjs-D50">Humedad Relativa %</td>
+              <td colspan="2" t="s" id="sjs-F50" xml:space="preserve">Temperatura Ambiente °C </td>
+              <td rowspan="4" colspan="10" t="s" id="sjs-H50">Este certificado expresa el resultado de las mediciones
+                realizadas. No podrá ser reproducido total o parcialmente excepto cuando se hayan obtenido previamente
+                permiso por escrito del laboratorio que lo emite.
+                <br>Los resultados contenidos en el siguiente certificado se refieren al momento y condiciones en que se
+                realizaron las mediciones. El laboratorio que lo emite no se responsabiliza de los perjuicios que puedan
+                derivarse del uso inadecuado de los instrumentos calibrados.
+                <br>El laboratorio no se responsabiliza de la información suministrada por el cliente (Dirección y Nit).
+                <br>El medidor bajo calibración no fue objeto de muestreo por parte de este Laboratorio, el ítem fue
+                calibrado tal como se recibió.</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A51"></td>
+              <td colspan="2" t="s" id="sjs-B51">Mínima</td>
+              <td colspan="2" t="z" id="sjs-D51"></td>
+              <td colspan="2" t="z" id="sjs-F51"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A52"></td>
+              <td colspan="2" t="s" id="sjs-B52">Máxima</td>
+              <td colspan="2" t="z" id="sjs-D52"></td>
+              <td colspan="2" t="z" id="sjs-F52"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A53"></td>
+              <td colspan="2" t="s" id="sjs-B53">Promedio</td>
+              <td colspan="2" t="z" id="sjs-D53"></td>
+              <td colspan="2" t="z" id="sjs-F53"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A54"></td>
+              <td colspan="16" t="s" id="sjs-B54" class="c">INCERTIDUMBRE DE LA MEDICION</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A55"></td>
+              <td rowspan="2" colspan="16" t="s" id="sjs-B55">La incertidumbre reportada es la estándar compuesta
+                multiplicada por el factor de cubrimiento K= 2, con el cual se logro, una distribución normal, un nivel
+                de confianza de 95.45%.</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A56"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A57"></td>
+              <td colspan="16" t="s" id="sjs-B57" class="c">RESULTADOS DE LA CALIBRACION<span
+                  style="font-size:11pt;"><b><sup>3</sup></b></span></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A58"></td>
+              <td colspan="2" t="s" id="sjs-B58">Prueba</td>
+              <td colspan="2" t="s" id="sjs-D58" xml:space="preserve"> Caudal de Prueba (l/h) Promedio </td>
+              <td colspan="2" t="s" id="sjs-F58">Volumen Medidor (l) Promedio, Vi</td>
+              <td colspan="2" t="s" id="sjs-H58">Volumen Real (l) Promedio, Va</td>
+              <td colspan="2" t="s" id="sjs-J58">Error (%) Promedio</td>
+              <td colspan="2" t="s" id="sjs-L58">Incertidumbre Expandida (%)</td>
+              <td colspan="2" t="s" id="sjs-N58">EMP <span style="font-size:11pt;"><sup>2</sup></span></td>
+              <td colspan="2" t="s" id="sjs-P58" xml:space="preserve">Factor de Cubrimiento K </td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A59"></td>
+              <td colspan="2" t="z" id="sjs-B59">Q1</td>
+              <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ1 | number:'1.0-2' }}</td>
+              <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ1 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ1 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A59"></td>
+              <td colspan="2" t="z" id="sjs-B59">Q2</td>
+              <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A59"></td>
+              <td colspan="2" t="z" id="sjs-B59">Q3</td>
+              <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+              <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A62"></td>
+              <td rowspan="3" colspan="16" t="s" id="sjs-B62"><span style="font-size:11pt;"><sup>1</sup></span><span
+                  style="font-size:11pt;"> Q1 o Qmin caudal mínimo, Q2 o Qt caudal transición, Q3 o Qp caudal
+                  permanente; estas definiciones corresponden a los numerales a los numerales 3.3.2, 3.3.3, 3,3.4 y
+                  3.3.5 de la NTC-ISO 4064-1:2016.<br></span><span style="font-size:11pt;"><sup>2</sup></span><span
+                  style="font-size:11pt;"> El Error Máximo Permisible corresponde al establecido por el cliente en el
+                  acuerdo de servicio.<br></span><span style="font-size:11pt;"><sup>3</sup></span><span
+                  style="font-size:11pt;"> Los datos reportados en la sección de RESULTADOS DE CALIBRACION son el
+                  resultado de tres repeticiones por caudal</span></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A63"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A64"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A66"></td>
+              <td colspan="16" t="s" id="sjs-B66" class="c">FIRMAS AUTORIZADAS</td>
+            </tr>
+            <tr>
+              <td t="z" colspan="5" id="sjs-A68"></td>
+              <td t="z" id="sjs-F67"></td>
+              <td t="z" id="sjs-G67"></td>
+              <td t="z" id="sjs-H67"></td>
+              <td t="z" id="sjs-I67"></td>
+              <td t="z" id="sjs-J67"></td>
+              <td t="z" id="sjs-K67"></td>
+              <td t="z" id="sjs-L67"></td>
+              <td t="z" id="sjs-M67"></td>
+              <td t="z" id="sjs-N67"></td>
+              <td t="z" id="sjs-O67"></td>
+              <td t="z" id="sjs-P67"></td>
+              <td t="z" id="sjs-Q67"></td>
+            </tr>
+            <tr>
+              <td t="z" colspan="5" id="sjs-A68"></td>
+
+              <td colspan="2" t="s" id="sjs-F68">Calibró</td>
+              <td t="z" id="sjs-H68"></td>
+              <td t="z" id="sjs-I68"></td>
+              <td t="z" id="sjs-J68"></td>
+              <td t="z" id="sjs-K68"></td>
+              <td colspan="2" t="s" id="sjs-L68">Revisó y Aprobó</td>
+              <td t="z" id="sjs-N68"></td>
+              <td t="z" id="sjs-O68"></td>
+              <td t="z" id="sjs-P68"></td>
+              <td t="z" id="sjs-Q68"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A69"></td>
+              <td t="z" id="sjs-B69"></td>
+              <td t="z" id="sjs-C69"></td>
+              <td t="z" id="sjs-D69"></td>
+              <td t="z" id="sjs-E69"></td>
+              <td rowspan="3" colspan="2" t="z" id="sjs-F69"></td>
+              <td t="z" id="sjs-H69"></td>
+              <td t="z" id="sjs-I69"></td>
+              <td t="z" id="sjs-J69"></td>
+              <td t="z" id="sjs-K69"></td>
+              <td rowspan="3" colspan="2" t="z" id="sjs-L69"></td>
+              <td t="z" id="sjs-N69"></td>
+              <td t="z" id="sjs-O69"></td>
+              <td t="z" id="sjs-P69"></td>
+              <td t="z" id="sjs-Q69"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A70"></td>
+              <td t="z" id="sjs-B70"></td>
+              <td t="z" id="sjs-C70"></td>
+              <td t="z" id="sjs-D70"></td>
+              <td t="z" id="sjs-E70"></td>
+              <td t="z" id="sjs-H70"></td>
+              <td t="z" id="sjs-I70"></td>
+              <td t="z" id="sjs-J70"></td>
+              <td t="z" id="sjs-K70"></td>
+              <td t="z" id="sjs-N70"></td>
+              <td t="z" id="sjs-O70"></td>
+              <td t="z" id="sjs-P70"></td>
+              <td t="z" id="sjs-Q70"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A71"></td>
+              <td t="z" id="sjs-B71"></td>
+              <td t="z" id="sjs-C71"></td>
+              <td t="z" id="sjs-D71"></td>
+              <td t="z" id="sjs-E71"></td>
+              <td t="z" id="sjs-H71"></td>
+              <td t="z" id="sjs-I71"></td>
+              <td t="z" id="sjs-J71"></td>
+              <td t="z" id="sjs-K71"></td>
+              <td t="z" id="sjs-N71"></td>
+              <td t="z" id="sjs-O71"></td>
+              <td t="z" id="sjs-P71"></td>
+              <td t="z" id="sjs-Q71"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A72"></td>
+              <td t="z" id="sjs-B72"></td>
+              <td t="z" id="sjs-C72"></td>
+              <td t="z" id="sjs-D72"></td>
+              <td rowspan="2" colspan="4" t="s" id="sjs-E72">Metrólogo Laboratorio Metrólogo</td>
+              <td t="z" id="sjs-I72"></td>
+              <td t="z" id="sjs-J72"></td>
+              <td rowspan="2" colspan="5" t="s" id="sjs-K72">Administrador Laboratorio Coordinador Laboratorio de
+                Medidores</td>
+              <td t="z" id="sjs-P72"></td>
+              <td t="z" id="sjs-Q72"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A73"></td>
+              <td t="z" id="sjs-B73"></td>
+              <td t="z" id="sjs-C73"></td>
+              <td t="z" id="sjs-D73"></td>
+              <td t="z" id="sjs-I73"></td>
+              <td t="z" id="sjs-J73"></td>
+              <td t="z" id="sjs-P73"></td>
+              <td t="z" id="sjs-Q73"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A74"></td>
+              <td t="z" id="sjs-B74"></td>
+              <td t="z" id="sjs-C74"></td>
+              <td t="z" id="sjs-D74"></td>
+              <td t="z" id="sjs-E74"></td>
+              <td t="z" id="sjs-F74"></td>
+              <td t="z" id="sjs-G74"></td>
+              <td t="z" id="sjs-H74"></td>
+              <td t="z" id="sjs-I74"></td>
+              <td t="z" id="sjs-J74"></td>
+              <td t="z" id="sjs-K74"></td>
+              <td t="z" id="sjs-L74"></td>
+              <td t="z" id="sjs-M74"></td>
+              <td t="z" id="sjs-N74"></td>
+              <td t="z" id="sjs-O74"></td>
+              <td t="z" id="sjs-P74"></td>
+              <td t="z" id="sjs-Q74"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A75"></td>
+              <td t="z" id="sjs-B75"></td>
+              <td t="z" id="sjs-C75"></td>
+              <td t="z" id="sjs-D75"></td>
+              <td t="z" id="sjs-E75"></td>
+              <td t="z" id="sjs-F75"></td>
+              <td t="z" id="sjs-G75"></td>
+              <td colspan="4" t="s" id="sjs-H75" xml:space="preserve"> - FIN DEL CERTIFICADO -</td>
+              <td t="z" id="sjs-L75"></td>
+              <td t="z" id="sjs-M75"></td>
+              <td t="z" id="sjs-N75"></td>
+              <td t="z" id="sjs-O75"></td>
+              <td t="z" id="sjs-P75"></td>
+              <td t="z" id="sjs-Q75"></td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A76"></td>
+              <td colspan="16" t="s" id="sjs-B76">SERVAF S.A E.S.P</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A77"></td>
+              <td colspan="16" t="s" id="sjs-B77">Carrera 9 Calle 27 Esquina Estación Torasso</td>
+            </tr>
+            <tr>
+              <td t="z" id="sjs-A78"></td>
+              <td colspan="4" t="s" id="sjs-B78">Página 1 de 1</td>
+              <td colspan="8" t="s" id="sjs-F78">Teléfono 435-1268 Ext: 206</td>
+              <td colspan="4" t="s" id="sjs-N78">LCM-FOR-014 - Versión 7</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <ion-toolbar>
+    <!-- <button [useExistingCss]="true" printSectionId="print" ngxPrint>print</button> -->
+    <ion-button (click)="print()" expand="block" shape="round" color="primary" *ngIf="ready">
+      Imprimir
+    </ion-button>
+
+  </ion-toolbar>
+</ion-content>
+
+<div class="container" *ngIf="ready" id="print">
+  <div class="row">
+
+    <div class="col-sm-12 p-4" >
+      <div class="d-flex flex-row justify-content-between fuente">
+        <div>
+          <p class="m-0 p-0"> LABORATORIO CALIBRACION DE MEDIDORES </p>
+          <p class="m-0 p-0">EMPRESA DE SERVICIOS DE FLORENCIA S.A E.S.P</p>
+          <p class="m-0 p-0"> SERVAF S.A E.S.P.</p>
+          <p class="m-0 p-0"> NIT: 800.169.470-7 </p>
+        </div>
+        <div class="d-flex flex-row pr-5">
+          <div class="d-flex">
+            <img src="/assets/images/servaf.png" alt="" height="30">
+          </div>
+          <div class="d-flex flex-column">
+            <img src="/assets/images/onac.png" alt="" height="30">
+            <div class="text-center">
+              <p class="m-0 p-0"> Acreditado ISO/IEC 17025:2005</p>
+              <p class="m-0 p-0"> 16-LAC-024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table>
+        <tbody class="text-center">
+          <tr>
+            <td t="z" colspan="5" id="sjs-A7"></td>
+            <td colspan="7" t="s" id="sjs-F7" class="c a">CERTIFICADO DE CALIBRACION No</td>
+            <td colspan="5" t="z" id="sjs-M7"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A8"></td>
+            <td colspan="16" t="s" id="sjs-B8" class="c">DATOS DEL SOLICITANTE</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A9"></td>
+            <td colspan="4" t="s" id="sjs-B9" class="c">NOMBRE SOLICITANTE</td>
+            <td colspan="8" t="z" id="sjs-F9">{{entrada.cliente?.nombre}}</td>
+            <td colspan="2" t="s" id="sjs-N9" class="c">FECHA DE EMISION</td>
+            <td colspan="2" t="z" id="sjs-P9">{{orden.fecha | date}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A10"></td>
+            <td colspan="4" t="s" id="sjs-B10" class="c">DIRECCION SOLICITANTE</td>
+            <td colspan="3" t="z" id="sjs-F10">{{entrada.cliente?.direccion}}</td>
+            <td colspan="3" t="s" id="sjs-I10" class="c">FECHA DE RECEPCION</td>
+            <td colspan="2" t="z" id="sjs-L10">{{entrada.fecha | date}}</td>
+            <td colspan="2" t="s" id="sjs-N10" class="c">FECHA DE CALIBRACION</td>
+            <td colspan="2" t="z" id="sjs-P10">{{orden.fecha | date}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A11"></td>
+            <td colspan="4" t="s" id="sjs-B11" class="c">NIT, RUT, C.C:</td>
+            <td colspan="3" t="z" id="sjs-F11">{{entrada.cliente?.numero}}</td>
+            <td colspan="3" t="s" id="sjs-I11" xml:space="preserve" class="c"> INSTRUMENTO A CALIBRAR</td>
+            <td colspan="6" t="z" id="sjs-L11">Medidor de agua potable fria</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A12"></td>
+            <td colspan="16" t="s" id="sjs-B12" class="c">DESCRIPCION DEL INSTRUMENTO A CALIBRAR</td>
+          </tr>
+          <tr>
+            <td></td>
+
+            <td colspan="3" t="s" id="sjs-B13">Serie</td>
+            <td colspan="4" t="s" id="sjs-E13">Marca</td>
+            <td colspan="3" t="s" id="sjs-I13">Modelo</td>
+            <td colspan="2" t="s" id="sjs-L13">Tipo</td>
+            <td colspan="2" t="s" id="sjs-N13">Rango M.</td>
+            <td colspan="2" t="s" id="sjs-P13">Año Fabricación</td>
+          </tr>
+          <tr *ngFor="let m of medidores">
+            <td></td>
+
+            <td colspan="3" t="n" id="sjs-B14">{{m.serie}}</td>
+            <td colspan="4" t="z" id="sjs-E14">{{m.marca}}</td>
+            <td colspan="3" t="z" id="sjs-I14">{{m.modelo}}</td>
+            <td colspan="2" t="z" id="sjs-L14">{{entrada.tipo}}</td>
+            <td colspan="2" t="z" id="sjs-N14">{{entrada.rango}}</td>
+            <td colspan="2" t="z" id="sjs-P14">{{m.fabricacion}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A15"></td>
+            <td colspan="3" t="s" id="sjs-B15">Q3(m3/h)</td>
+            <td colspan="4" t="s" id="sjs-E15">Capacidad Máxima Escala (m3)</td>
+            <td colspan="3" t="s" id="sjs-I15">Div Min Escala (l)</td>
+            <td colspan="2" t="s" id="sjs-L15">Diámetro (mm)</td>
+            <td colspan="4" t="s" id="sjs-N15">Norma Estándar</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A16"></td>
+            <td colspan="3" t="z" id="sjs-B16">{{entrada.q3 | number:'1.0-2'}}</td>
+            <td colspan="4" t="z" id="sjs-E16"></td>
+            <td colspan="3" t="z" id="sjs-I16">{{entrada.escala | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-L16">{{entrada.diametro | number:'1.0-2'}}</td>
+            <td rowspan="3" colspan="4" t="z" id="sjs-N16">{{entrada.norma}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A17"></td>
+            <td colspan="3" t="s" id="sjs-B17">Lectura de Entrada (m3)</td>
+            <td colspan="4" t="s" id="sjs-E17">Clase de Temperatura</td>
+            <td colspan="5" t="s" id="sjs-I17">Clase de Sensibilidad de Flujo</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A18"></td>
+            <td colspan="3" t="z" id="sjs-B18">0</td>
+            <td colspan="4" t="z" id="sjs-E18">{{entrada.clasetemp}}</td>
+            <td colspan="5" t="z" id="sjs-I18">{{entrada.aguasarriba}} / {{entrada.aguasabajo}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A19"></td>
+            <td colspan="16" t="s" id="sjs-B19" class="c">TRAZABILIDAD</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A20"></td>
+            <td colspan="16" t="s" id="sjs-B20" xml:space="preserve">Los patrones utilizados en la calibración de los
+              medidores de agua están trazados a patrones nacionales e internacionales de las magnitudes respectivas.
+              Los cuales se relacionan a continuación al Sistema Internacional. </td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A21"></td>
+            <td colspan="4" t="s" id="sjs-B21" class="p-0">Patrón</td>
+            <td colspan="2" t="s" id="sjs-F21" class="p-0" >Código Patrón</td>
+            <td colspan="3" t="s" id="sjs-H21" class="p-0">Certificado de Calibración</td>
+            <td colspan="3" t="s" id="sjs-K21" class="p-0">Fecha de calibración</td>
+            <td colspan="4" t="s" id="sjs-N21"class="p-0">Fuente de Trazabilidad</td>
+          </tr>
+          <tr *ngFor="let c of caudal">
+            <td t="z" id="sjs-A22"></td>
+            <td colspan="4" t="z" id="sjs-B22" class="p-0" >{{c.patron}}</td>
+            <td colspan="2" t="z" id="sjs-F22" class="p-0">{{c.codigo}}</td>
+            <td colspan="3" t="z" id="sjs-H22" class="p-0">{{c.certificado}}</td>
+            <td colspan="3" t="z" id="sjs-K22" class="p-0">{{c.fecha_calibracion | date}}</td>
+            <td colspan="4" t="z" id="sjs-N22" class="p-0">{{c.fuente}}</td>
+          </tr>
+          <tr *ngFor="let c of temprvm">
+            <td t="z" id="sjs-A22"></td>
+            <td colspan="4" t="z" id="sjs-B22" class="p-0">{{c.patron}}</td>
+            <td colspan="2" t="z" id="sjs-F22" class="p-0" >{{c.codigo}}</td>
+            <td colspan="3" t="z" id="sjs-H22" class="p-0">{{c.certificado}}</td>
+            <td colspan="3" t="z" id="sjs-K22" class="p-0">{{c.fecha_calibracion | date}}</td>
+            <td colspan="4" t="z" id="sjs-N22" class="p-0">{{c.fuente}}</td>
+          </tr>
+          <tr *ngFor="let c of tempagua">
+            <td t="z" id="sjs-A22"></td>
+            <td colspan="4" t="z" id="sjs-B22" class="p-0">{{c.patron}}</td>
+            <td colspan="2" t="z" id="sjs-F22" class="p-0">{{c.codigo}}</td>
+            <td colspan="3" t="z" id="sjs-H22" class="p-0">{{c.certificado}}</td>
+            <td colspan="3" t="z" id="sjs-K22" class="p-0">{{c.fecha_calibracion | date}}</td>
+            <td colspan="4" t="z" id="sjs-N22" class="p-0">{{c.fuente}}</td>
+          </tr>
+
+
+          <tr>
+            <td t="z" id="sjs-A34"></td>
+            <td colspan="16" t="s" id="sjs-B34" class="c">METODO DE CALIBRACION</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A35"></td>
+            <td rowspan="2" colspan="16" t="s" id="sjs-B35">El método empleado es la recolección, del volumen indicado
+              en el medidor con el volumen indicado por un recipiente volumétrico tomado como patrón, de conformidad
+              con el numeral 7.4.2.1 de la NTC-ISO 4064-2:2016.</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A36"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A37"></td>
+            <td colspan="16" t="s" id="sjs-B37" xml:space="preserve">El error relativo es la diferencia entre el
+              volumen
+              registrado en el medidor y el volumen medido en el recipiente volumétrico patrón de trabajo. </td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A38"></td>
+            <td rowspan="4" colspan="6" t="z" id="sjs-B38"></td>
+            <td colspan="10" t="z" id="sjs-H38"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A39"></td>
+            <td t="s" id="sjs-H39">Donde:</td>
+            <td colspan="9" t="s" id="sjs-I39">Vi = Volumen registrado en el medidor como la diferencia entre el
+              volumen
+              inicial y final</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A40"></td>
+            <td t="z" id="sjs-H40"></td>
+            <td colspan="9" t="s" id="sjs-I40" xml:space="preserve">Va = Volumen medido en el recipiente volumétrico
+              patrón </td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A41"></td>
+            <td t="z" id="sjs-H41"></td>
+            <td t="z" id="sjs-I41"></td>
+            <td t="z" id="sjs-J41"></td>
+            <td t="z" id="sjs-K41"></td>
+            <td t="z" id="sjs-L41"></td>
+            <td t="z" id="sjs-M41"></td>
+            <td t="z" id="sjs-N41"></td>
+            <td t="z" id="sjs-O41"></td>
+            <td t="z" id="sjs-P41"></td>
+            <td t="z" id="sjs-Q41"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A42"></td>
+            <td colspan="16" t="s" id="sjs-B42" class="c">CONDICIONES DURANTE LA CALIBRACION</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A43"></td>
+            <td colspan="16" t="s" id="sjs-B43">El promedio de las condiciones ambientales y la temperatura del agua
+              del
+              laboratorio durante el proceso de calibración fueron las siguientes:</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A44"></td>
+            <td rowspan="2" t="z" id="sjs-B44"></td>
+            <td colspan="3" t="s" id="sjs-C44" class="c">Caudal (l/h)</td>
+            <td colspan="3" t="s" id="sjs-F44" class="c">Presión de Entrada (bar)</td>
+            <td colspan="3" t="s" id="sjs-I44" class="c">Presión de Salida (bar)</td>
+            <td colspan="3" t="s" id="sjs-L44" class="c">Temperatura Línea (°C)</td>
+            <td colspan="3" t="s" id="sjs-O44" class="c">Temperatura RVM (°C)</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A45"></td>
+            <td t="s" id="sjs-C45" class="c">Mínimo</td>
+            <td t="s" id="sjs-D45" class="c">Máximo</td>
+            <td t="s" id="sjs-E45" class="c">Promedio</td>
+            <td t="s" id="sjs-F45" class="c">Mínimo</td>
+            <td t="s" id="sjs-G45" class="c">Máximo</td>
+            <td t="s" id="sjs-H45" class="c">Promedio</td>
+            <td t="s" id="sjs-I45" class="c">Mínimo</td>
+            <td t="s" id="sjs-J45" class="c">Máximo</td>
+            <td t="s" id="sjs-K45" class="c">Promedio</td>
+            <td t="s" id="sjs-L45" class="c">Mínimo</td>
+            <td t="s" id="sjs-M45" class="c">Máximo</td>
+            <td t="s" id="sjs-N45" class="c">Promedio</td>
+            <td t="s" id="sjs-O45" class="c">Mínimo</td>
+            <td t="s" id="sjs-P45" class="c">Máximo</td>
+            <td t="s" id="sjs-Q45" class="c">Promedio</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A46"></td>
+            <td t="z" id="sjs-B46"></td>
+            <td t="z" id="sjs-C46"></td>
+            <td t="z" id="sjs-D46"></td>
+            <td t="z" id="sjs-E46"></td>
+            <td t="z" id="sjs-F46"></td>
+            <td t="z" id="sjs-G46"></td>
+            <td t="z" id="sjs-H46"></td>
+            <td t="z" id="sjs-I46"></td>
+            <td t="z" id="sjs-J46"></td>
+            <td t="z" id="sjs-K46"></td>
+            <td t="z" id="sjs-L46"></td>
+            <td t="z" id="sjs-M46"></td>
+            <td t="z" id="sjs-N46"></td>
+            <td t="z" id="sjs-O46"></td>
+            <td t="z" id="sjs-P46"></td>
+            <td t="z" id="sjs-Q46"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A50"></td>
+            <td colspan="2" t="z" id="sjs-B50"></td>
+            <td colspan="2" t="s" id="sjs-D50">Humedad Relativa %</td>
+            <td colspan="2" t="s" id="sjs-F50" xml:space="preserve">Temperatura Ambiente °C </td>
+            <td rowspan="4" colspan="10" t="s" id="sjs-H50">Este certificado expresa el resultado de las mediciones
+              realizadas. No podrá ser reproducido total o parcialmente excepto cuando se hayan obtenido previamente
+              permiso por escrito del laboratorio que lo emite.
+              <br>Los resultados contenidos en el siguiente certificado se refieren al momento y condiciones en que se
+              realizaron las mediciones. El laboratorio que lo emite no se responsabiliza de los perjuicios que puedan
+              derivarse del uso inadecuado de los instrumentos calibrados.
+              <br>El laboratorio no se responsabiliza de la información suministrada por el cliente (Dirección y Nit).
+              <br>El medidor bajo calibración no fue objeto de muestreo por parte de este Laboratorio, el ítem fue
+              calibrado tal como se recibió.</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A51"></td>
+            <td colspan="2" t="s" id="sjs-B51">Mínima</td>
+            <td colspan="2" t="z" id="sjs-D51"></td>
+            <td colspan="2" t="z" id="sjs-F51"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A52"></td>
+            <td colspan="2" t="s" id="sjs-B52">Máxima</td>
+            <td colspan="2" t="z" id="sjs-D52"></td>
+            <td colspan="2" t="z" id="sjs-F52"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A53"></td>
+            <td colspan="2" t="s" id="sjs-B53">Promedio</td>
+            <td colspan="2" t="z" id="sjs-D53"></td>
+            <td colspan="2" t="z" id="sjs-F53"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A54"></td>
+            <td colspan="16" t="s" id="sjs-B54" class="c">INCERTIDUMBRE DE LA MEDICION</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A55"></td>
+            <td rowspan="2" colspan="16" t="s" id="sjs-B55">La incertidumbre reportada es la estándar compuesta
+              multiplicada por el factor de cubrimiento K= 2, con el cual se logro, una distribución normal, un nivel
+              de confianza de 95.45%.</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A56"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A57"></td>
+            <td colspan="16" t="s" id="sjs-B57" class="c">RESULTADOS DE LA CALIBRACION<span
+                style="font-size:11pt;"><b><sup>3</sup></b></span></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A58"></td>
+            <td colspan="2" t="s" id="sjs-B58">Prueba</td>
+            <td colspan="2" t="s" id="sjs-D58" xml:space="preserve"> Caudal de Prueba (l/h) Promedio </td>
+            <td colspan="2" t="s" id="sjs-F58">Volumen Medidor (l) Promedio, Vi</td>
+            <td colspan="2" t="s" id="sjs-H58">Volumen Real (l) Promedio, Va</td>
+            <td colspan="2" t="s" id="sjs-J58">Error (%) Promedio</td>
+            <td colspan="2" t="s" id="sjs-L58">Incertidumbre Expandida (%)</td>
+            <td colspan="2" t="s" id="sjs-N58">EMP <span style="font-size:11pt;"><sup>2</sup></span></td>
+            <td colspan="2" t="s" id="sjs-P58" xml:space="preserve">Factor de Cubrimiento K </td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A59"></td>
+            <td colspan="2" t="z" id="sjs-B59">Q1</td>
+            <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ1 | number:'1.0-2' }}</td>
+            <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ1 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ1 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ1 | number:'1.0-2'}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A59"></td>
+            <td colspan="2" t="z" id="sjs-B59">Q2</td>
+            <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ2 | number:'1.0-2'}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A59"></td>
+            <td colspan="2" t="z" id="sjs-B59">Q3</td>
+            <td colspan="2" t="z" id="sjs-D59">{{resultados.caudalQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-F59">{{resultados.volumenProQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-H59">{{resultados.volumenRealQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-J59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-L59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-N59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+            <td colspan="2" t="z" id="sjs-P59">{{resultados.errorQ3 | number:'1.0-2'}}</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A62"></td>
+            <td rowspan="3" colspan="16" t="s" id="sjs-B62"><span style="font-size:11pt;"><sup>1</sup></span><span
+                style="font-size:11pt;"> Q1 o Qmin caudal mínimo, Q2 o Qt caudal transición, Q3 o Qp caudal
+                permanente; estas definiciones corresponden a los numerales a los numerales 3.3.2, 3.3.3, 3,3.4 y
+                3.3.5 de la NTC-ISO 4064-1:2016.<br></span><span style="font-size:11pt;"><sup>2</sup></span><span
+                style="font-size:11pt;"> El Error Máximo Permisible corresponde al establecido por el cliente en el
+                acuerdo de servicio.<br></span><span style="font-size:11pt;"><sup>3</sup></span><span
+                style="font-size:11pt;"> Los datos reportados en la sección de RESULTADOS DE CALIBRACION son el
+                resultado de tres repeticiones por caudal</span></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A63"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A64"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A66"></td>
+            <td colspan="16" t="s" id="sjs-B66" class="c">FIRMAS AUTORIZADAS</td>
+          </tr>
+          <tr>
+            <td t="z" colspan="5" id="sjs-A68"></td>
+            <td t="z" id="sjs-F67"></td>
+            <td t="z" id="sjs-G67"></td>
+            <td t="z" id="sjs-H67"></td>
+            <td t="z" id="sjs-I67"></td>
+            <td t="z" id="sjs-J67"></td>
+            <td t="z" id="sjs-K67"></td>
+            <td t="z" id="sjs-L67"></td>
+            <td t="z" id="sjs-M67"></td>
+            <td t="z" id="sjs-N67"></td>
+            <td t="z" id="sjs-O67"></td>
+            <td t="z" id="sjs-P67"></td>
+            <td t="z" id="sjs-Q67"></td>
+          </tr>
+          <tr>
+            <td t="z" colspan="5" id="sjs-A68"></td>
+
+            <td colspan="2" t="s" id="sjs-F68">Calibró</td>
+            <td t="z" id="sjs-H68"></td>
+            <td t="z" id="sjs-I68"></td>
+            <td t="z" id="sjs-J68"></td>
+            <td t="z" id="sjs-K68"></td>
+            <td colspan="2" t="s" id="sjs-L68">Revisó y Aprobó</td>
+            <td t="z" id="sjs-N68"></td>
+            <td t="z" id="sjs-O68"></td>
+            <td t="z" id="sjs-P68"></td>
+            <td t="z" id="sjs-Q68"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A69"></td>
+            <td t="z" id="sjs-B69"></td>
+            <td t="z" id="sjs-C69"></td>
+            <td t="z" id="sjs-D69"></td>
+            <td t="z" id="sjs-E69"></td>
+            <td rowspan="3" colspan="2" t="z" id="sjs-F69"></td>
+            <td t="z" id="sjs-H69"></td>
+            <td t="z" id="sjs-I69"></td>
+            <td t="z" id="sjs-J69"></td>
+            <td t="z" id="sjs-K69"></td>
+            <td rowspan="3" colspan="2" t="z" id="sjs-L69"></td>
+            <td t="z" id="sjs-N69"></td>
+            <td t="z" id="sjs-O69"></td>
+            <td t="z" id="sjs-P69"></td>
+            <td t="z" id="sjs-Q69"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A70"></td>
+            <td t="z" id="sjs-B70"></td>
+            <td t="z" id="sjs-C70"></td>
+            <td t="z" id="sjs-D70"></td>
+            <td t="z" id="sjs-E70"></td>
+            <td t="z" id="sjs-H70"></td>
+            <td t="z" id="sjs-I70"></td>
+            <td t="z" id="sjs-J70"></td>
+            <td t="z" id="sjs-K70"></td>
+            <td t="z" id="sjs-N70"></td>
+            <td t="z" id="sjs-O70"></td>
+            <td t="z" id="sjs-P70"></td>
+            <td t="z" id="sjs-Q70"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A71"></td>
+            <td t="z" id="sjs-B71"></td>
+            <td t="z" id="sjs-C71"></td>
+            <td t="z" id="sjs-D71"></td>
+            <td t="z" id="sjs-E71"></td>
+            <td t="z" id="sjs-H71"></td>
+            <td t="z" id="sjs-I71"></td>
+            <td t="z" id="sjs-J71"></td>
+            <td t="z" id="sjs-K71"></td>
+            <td t="z" id="sjs-N71"></td>
+            <td t="z" id="sjs-O71"></td>
+            <td t="z" id="sjs-P71"></td>
+            <td t="z" id="sjs-Q71"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A72"></td>
+            <td t="z" id="sjs-B72"></td>
+            <td t="z" id="sjs-C72"></td>
+            <td t="z" id="sjs-D72"></td>
+            <td rowspan="2" colspan="4" t="s" id="sjs-E72">Metrólogo Laboratorio Metrólogo</td>
+            <td t="z" id="sjs-I72"></td>
+            <td t="z" id="sjs-J72"></td>
+            <td rowspan="2" colspan="5" t="s" id="sjs-K72">Administrador Laboratorio Coordinador Laboratorio de
+              Medidores</td>
+            <td t="z" id="sjs-P72"></td>
+            <td t="z" id="sjs-Q72"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A73"></td>
+            <td t="z" id="sjs-B73"></td>
+            <td t="z" id="sjs-C73"></td>
+            <td t="z" id="sjs-D73"></td>
+            <td t="z" id="sjs-I73"></td>
+            <td t="z" id="sjs-J73"></td>
+            <td t="z" id="sjs-P73"></td>
+            <td t="z" id="sjs-Q73"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A74"></td>
+            <td t="z" id="sjs-B74"></td>
+            <td t="z" id="sjs-C74"></td>
+            <td t="z" id="sjs-D74"></td>
+            <td t="z" id="sjs-E74"></td>
+            <td t="z" id="sjs-F74"></td>
+            <td t="z" id="sjs-G74"></td>
+            <td t="z" id="sjs-H74"></td>
+            <td t="z" id="sjs-I74"></td>
+            <td t="z" id="sjs-J74"></td>
+            <td t="z" id="sjs-K74"></td>
+            <td t="z" id="sjs-L74"></td>
+            <td t="z" id="sjs-M74"></td>
+            <td t="z" id="sjs-N74"></td>
+            <td t="z" id="sjs-O74"></td>
+            <td t="z" id="sjs-P74"></td>
+            <td t="z" id="sjs-Q74"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A75"></td>
+            <td t="z" id="sjs-B75"></td>
+            <td t="z" id="sjs-C75"></td>
+            <td t="z" id="sjs-D75"></td>
+            <td t="z" id="sjs-E75"></td>
+            <td t="z" id="sjs-F75"></td>
+            <td t="z" id="sjs-G75"></td>
+            <td colspan="4" t="s" id="sjs-H75" xml:space="preserve"> - FIN DEL CERTIFICADO -</td>
+            <td t="z" id="sjs-L75"></td>
+            <td t="z" id="sjs-M75"></td>
+            <td t="z" id="sjs-N75"></td>
+            <td t="z" id="sjs-O75"></td>
+            <td t="z" id="sjs-P75"></td>
+            <td t="z" id="sjs-Q75"></td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A76"></td>
+            <td colspan="16" t="s" id="sjs-B76">SERVAF S.A E.S.P</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A77"></td>
+            <td colspan="16" t="s" id="sjs-B77">Carrera 9 Calle 27 Esquina Estación Torasso</td>
+          </tr>
+          <tr>
+            <td t="z" id="sjs-A78"></td>
+            <td colspan="4" t="s" id="sjs-B78">Página 1 de 1</td>
+            <td colspan="8" t="s" id="sjs-F78">Teléfono 435-1268 Ext: 206</td>
+            <td colspan="4" t="s" id="sjs-N78">LCM-FOR-014 - Versión 7</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
+</div>  

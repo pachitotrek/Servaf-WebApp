@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="container m-0 p-0">
+    <div class="m-0 p-0">
+      <ion-item color="primary">
+        <ion-label>Agregar Principio Fisico</ion-label>
+      </ion-item>
+
+    </div>
+    <div class="p-3">
+      <form [formGroup]="form" class="mb-4" (ngSubmit)="crear()">
+        <div class="form-group">
+          <label>Principio Fisico</label>
+          <input type="text" class="form-control" formControlName="titulo" aria-describedby="">
+         
+        </div>   
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Agregar</button>
+      </form>
+
+
+    </div>
+  </div>
+
+</ion-content>

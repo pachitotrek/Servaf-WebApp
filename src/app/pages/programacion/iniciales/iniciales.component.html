@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <form action="" [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <ion-item lines="none">
+          <ion-label>Prueba {{tipo}} </ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-6">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <ion-text color="primary">
+            <h4>Defina condiciones Iniciales</h4>
+          </ion-text>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp. Ambiente</span>
+          </div>
+          <input type="number" class="form-control" formControlName="temp">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Humedad. Relativa</span>
+          </div>
+          <input type="number" class="form-control" formControlName="humedad">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">%</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-12">
+        <ion-item button text-center color="primary" (click)="save()" [disabled]="!form.valid">
+          <ion-label>Guardar</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+</div>

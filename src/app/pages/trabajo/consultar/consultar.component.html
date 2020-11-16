@@ -1,0 +1,41 @@
+<ion-content>  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 m-0 p-0">
+        <ion-toolbar color="dark">
+          <ion-title>Ordenes de Entrada Pendientes</ion-title>
+        </ion-toolbar>
+      </div>
+      <div class="col-sm-12 m-0 p-0">
+        <div class="container">
+          <ion-card text-center>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"># Orden</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Fecha de Creacion</th>
+                  <th scope="col">Gestionar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ordenes">
+                  <th scope="row">{{item.orden}}</th>
+                  <td>{{item.cliente?.nombre}}</td>
+                  <td>{{item.fecha | date}}</td>
+                  <td style="max-width: 130px;" text-center>
+                    <ion-button (click)="open(item._id)" size="small" color="success">
+                      <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                    </ion-button>
+                  </td>
+                </tr>            
+              </tbody>
+            </table>        
+          </ion-card>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

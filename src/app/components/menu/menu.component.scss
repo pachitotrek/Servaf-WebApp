@@ -1,0 +1,67 @@
+.logo{
+    
+    width: 150px;
+}
+
+.box{
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.menu{
+    display: flex;
+}
+.toogle{
+    display: none;
+}
+.pr-2{
+padding-right: 10px;
+}
+
+ion-item{
+    --background:transparent;
+}
+
+
+@media (min-width: 0px) and (max-width: 720px) {
+    .menu{
+        display: none;
+    }
+    .toogle{
+        display: flex;
+    }
+
+  }
+
+
+  @media print {
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+  
+    #print {
+      display: block;
+      max-height: 269mm;
+      width: 216mm;
+      font-size: 12px;
+    }
+  
+    #noprint {
+      display: none;
+    }
+  
+    app-menu {
+        display: none;
+      }
+    
+    Ion-content{
+        display: none;
+    } 
+    
+    app-root{
+      display: none;
+    }
+  
+  
+  }
+  
+  

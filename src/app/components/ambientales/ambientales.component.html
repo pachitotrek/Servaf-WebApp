@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="primary">
+          <ion-label>Editar Datos</ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-12 mt-4">
+        <form action="" [formGroup]="form" (ngSubmit)="update()">
+          <div class="form-group">
+            <label>Humedad</label>
+            <input type="text" class="form-control" formControlName="humedad" aria-describedby="">
+            <small class="form-text text-muted">Humedad</small>
+          </div>
+          <div class="form-group">
+            <label>Temperatura Ambiente</label>
+            <input type="text" class="form-control" formControlName="temp_ambiente" aria-describedby="">
+            <small class="form-text text-muted">Temperatura Ambiente</small>
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="!form.valid">Actualizar</button>
+        </form>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

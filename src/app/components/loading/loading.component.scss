@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .flex-parent {
+    display:flex;
+    flex-direction:row;
+    
+  }
+  .flex-child {
+    padding:1em;
+    min-height: 20vh;
+    width: 100%;
+    align-items: center;
+    display:flex; 
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .loading-spinner {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    border: 2px solid rgba(13, 176, 43, .2);
+    border-top-color: var(--ion-color-primary);
+    -webkit-animation: rotation .8s infinite cubic-bezier(.6, .3, .3, .6);
+    animation: rotation .8s infinite cubic-bezier(.6, .3, .3, .6);
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loading-logo {
+    background: transparent url("/assets/img/logo_saufer2.svg");
+    background-size: 95px 95px;
+    height: 95px;
+    width: 95px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }

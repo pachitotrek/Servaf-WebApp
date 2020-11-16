@@ -1,0 +1,470 @@
+<ion-content>
+  <div class="container-fluid" id="noprint">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Certificado Generado con exito !!</h1>
+              <p class="lead">Descargue de nuevo el certificado</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12 mt-5 mb-5" id="noprint">
+        <ion-item color="primary" id="noprint">
+          <ion-button (click)="print()" expand="block" slot="end" color="light" id="noprint">
+            Imprimir
+          </ion-button>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content> 
+
+<div id="print" *ngIf="ready"  [ngClass]="{'derogado':item.derogado==='true'}"  >
+  <div class="encabezado" style="background: #ffff;">
+    <div class="membreteL ml-2">
+      LABORATORIO CALIBRACIÓN DE MEDIDORES <br>
+      EMPRESA DE SERVICIOS DE FLORENCIA S.A. E.S. <br>
+      SERVAF S.A. E.S.P. <br>
+      N.I.T.: 800.169.470-7
+    </div>
+    <div class="logo1">
+      <img src="/assets/images/servaf.jpg" style="width: 90px; margin-right: 1rem;" alt="Logo de Servaf S.A. E.S.">
+    </div>
+    <div class="logo2 mr-1">
+      <img src="/assets/images/onac.png" style="width: 119px;" alt="Logo de ONAC, Organismo de Acreditación.">
+    </div>
+  </div>
+
+ 
+
+  <div class="contenido all blanco">
+    <table class="Table1 all">
+      <thead>
+        <tr>
+          <th style="background-color: white; border: 0;" colspan="2"></th>
+          <th colspan="3" class="thead">CERTIFICADO DE CALIBRACIÓN N°</th>
+          <th colspan="3" style="background-color: white; color: #00305F !important;">{{item.year}}-{{item.consecutivo}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="8" class="thead">DATOS DEL SOLICITANTE</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="thead">NOMBRE SOLICITANTE</td>
+          <td colspan="4" class="upper">{{item.cliente?.nombre}}</td>
+          <td class="thead">FECHA DE EMISIÓN</td>
+          <td>{{trabajo.fecha | date:'yyyy-MM-dd'}}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="thead">DIRECCIÓN SOLICITANTE</td>
+          <td colspan="2">{{item.cliente?.direccion}}</td>
+          <td class="thead">FECHA DE RECEPCIÓN</td>
+          <td>{{entrada.fecha | date:'yyyy-MM-dd'}}</td>
+          <td class="thead">FECHA DE CALIBRACIÓN</td>
+          <td>{{trabajo.fecha | date:'yyyy-MM-dd'}}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="thead">N.I.T., R.U.T., C.C</td>
+          <td colspan="2">{{item.cliente?.numero}}</td>
+          <td class="thead">INSTRUMENTO A CALIBRAR</td>
+          <td colspan="3">Medidor de agua potable fría</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">DESCRIPCIÓN DEL INSTRUMENTO A CALIBRAR</td>
+        </tr>
+        <tr>
+          <td colspan="2">Serie</td>
+          <td colspan="2">Marca</td>
+          <td>Modelo</td>
+          <td>Tipo</td>
+          <td>Clase Pr.</td>
+          <td>Año Fabr.</td>
+        </tr>
+        <tr>
+          <td colspan="2">{{item.datos?.serie}}</td>
+          <td colspan="2" class="upper">{{item.datos.marca?.titulo}}</td>
+          <td class="upper">{{item.datos.modelo?.titulo}}</td>
+          <td>{{item.metrologicas?.principio}}</td>
+          <td *ngIf="item.type !=='3'">{{item.metrologicas?.precision}}</td>
+          <td *ngIf="item.type =='3'">NA</td>
+          <td>{{item.datos.fabricacion}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">Q3 (m3/h)</td>
+          <td colspan="2">Capacidad máx. escala (m3)</td>
+          <td>Div Min Escala (I)</td>
+          <td>DN (mm)</td>
+          <td colspan="2">Rango Medición</td>
+        </tr>
+        <tr>
+          <td colspan="2">{{item.metrologicas?.q3 | number:'1.0-2'}}</td>
+          <td colspan="2">{{item.metrologicas?.rango}}</td>
+          <td>{{item.metrologicas?.escala | number:'1.0-2'}}</td>
+          <td>{{item.metrologicas?.diametro | number:'1.0-2'}}</td>
+          <td colspan="2" *ngIf="item.type !=='3'">R{{rango}}</td>
+          <td colspan="2" *ngIf="item.type =='3'" >NA</td>
+        </tr>
+        <tr>
+          <td colspan="2">Lectura entrada</td>
+          <td colspan="2" *ngIf="item.type !== '3'">Clase de temperatura</td>
+          <td colspan="2" *ngIf="item.type=='3'">Clase M.</td>
+          <td colspan="2">Clase de sensibilidad de flujo</td>
+          <td colspan="2">Norma estándar</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="upper">{{item.datos.lectura}}</td>
+          <td colspan="2" class="upper" *ngIf="item.type !=='3'">{{item.metrologicas?.clasetemp || "NA"}}</td>
+          <td colspan="2" class="upper" *ngIf="item.type=='3'">{{item.metrologicas?.clase}}</td>
+          <td colspan="2" class="upper" *ngIf="item.type !=='3'">{{item.metrologicas?.aguasarriba || "NA"}} /
+            {{item.metrologicas?.aguasabajo || "NA"}}</td>
+          <td colspan="2" class="upper" *ngIf="item.type =='3'">NA</td>
+
+          <td colspan="2" class="upper">{{item.metrologicas?.norma}}</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">TRAZABILIDAD</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="text-left" style="padding: 0.3rem;font-size: 11px;">Los patrones utilizados en la calibración de los
+            medidores de agua están trazados a patrones nacionales e internacionales de las magnitudes respectivas. Los
+            cuales se relacionan a continuación al Sistema Internacional.</td>
+        </tr>
+        <tr class="all">
+          <td colspan="2">Patrón</td>
+          <td>Código Patrón</td>
+          <td colspan="2">Certificado de Calibración</td>
+          <td>Fecha de Calibración</td>
+          <td colspan="2">Fuente de Trazabilidad</td>
+        </tr>
+        <tr *ngFor="let c of instrumentos">
+          <td colspan="2" class="upper">{{c.patron}}</td>
+          <td class="upper">{{c.codigo}}</td>
+          <td colspan="2" class="upper">{{c.certificado}}</td>
+          <td class="upper">{{c.fecha_calibracion | date:'yyyy-MM-dd'}}</td>
+          <td colspan="2" class="upper">{{c.fuente}}</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">MÉTODO DE CALIBRACIÓN</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="text-left" style="padding: 0.3rem;">
+            El método empleado es la recolección del volumen indicado en el medidor con el volumen indicado
+            por un recipiente volumétrico, tomado como patrón, de conformidad con el numeral 7.4.2.1 de la norma
+            NTC-ISO 4064-2:2016.
+            El error relativo es la diferencia entre el volumen registrado en el medidor y el volumen medido en el
+            recipiente volumétrico patrón de trabajo.
+            <div class="flex-calibracion" style="margin-top: 0.3rem;">
+              <img src="/assets/images/formula1.png" alt="Imagen de Fórmula de Calibración">
+              <div class="ml-3">Donde:
+                <p class="text-left m-0 p-0">Vi = Volumen registrado en el medidor como la diferencia entre el volumen
+                  inicial y final.</p>
+                <p class="text-left m-0 p-0">Va = Volumen medido en el recipiente volumétrico patrón.</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">CONDICIONES DURANTE LA CALIBRACIÓN</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="space">
+            <p class="p-0 m-0 text-left" style="padding: 0.3rem;">
+              Las condiciones ambientales y la temperatura del agua del laboratio durante la calibración fueron las
+              siguientes:
+            </p>
+            <table class="Table1">
+              <tbody>
+                <tr>
+                  <td class="mini border-0"></td>
+                  <td class="mini minithead" colspan="3">Caudal (l/h)</td>
+                  <td class="mini minithead" colspan="3">Presión de Entrada (kPa)</td>
+                  <td class="mini minithead" colspan="3">Presión de Salida (kPa)</td>
+                  <td class="mini minithead" colspan="3">Temperatura Línea (°C)</td>
+                  <td class="mini minithead" colspan="3">Temperatura RVM (°C)</td>
+                </tr>
+                <tr>
+                  <td class="mini border-0"></td>
+                  <td class="mini minithead">Mínimo</td>
+                  <td class="mini minithead">Máximo</td>
+                  <td class="mini minithead">Promedio</td>
+                  <td class="mini minithead">Mínimo</td>
+                  <td class="mini minithead">Máximo</td>
+                  <td class="mini minithead">Promedio</td>
+                  <td class="mini minithead">Mínimo</td>
+                  <td class="mini minithead">Máximo</td>
+                  <td class="mini minithead">Promedio</td>
+                  <td class="mini minithead">Mínimo</td>
+                  <td class="mini minithead">Máximo</td>
+                  <td class="mini minithead">Promedio</td>
+                  <td class="mini minithead">Mínimo</td>
+                  <td class="mini minithead">Máximo</td>
+                  <td class="mini minithead">Promedio</td>
+                </tr>
+                <tr>
+                  <td class="mini">Q1</td>
+                  <td class="mini">{{datos.caudalq1_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq1_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq1_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq1_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq1_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq1_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq1_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq1_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq1_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq1_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq1_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq1_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq1_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq1_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq1_pro | number:'1.2-2' }}</td>
+                </tr>
+                <tr>
+                  <td class="mini">Q2</td>
+                  <td class="mini">{{datos.caudalq2_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq2_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq2_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq2_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq2_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq2_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq2_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq2_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq2_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq2_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq2_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq2_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq2_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq2_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq2_pro | number:'1.2-2' }}</td>
+                </tr>
+                <tr>
+                  <td class="mini">Q3</td>
+                  <td class="mini">{{datos.caudalq3_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq3_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq3_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq3_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq3_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq3_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq3_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq3_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq3_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq3_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq3_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq3_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq3_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq3_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq3_pro | number:'1.2-2' }}</td>
+                </tr>
+                <tr *ngIf="q4.length>0">
+                  <td class="mini">Q4</td>
+                  <td class="mini">{{datos.caudalq4_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq4_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.caudalq4_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq4_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq4_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.pentradaq4_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq4_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq4_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.psalidaq4_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq4_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq4_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.tlineaq4_pro | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq4_min | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq4_max | number:'1.2-2' }}</td>
+                  <td class="mini">{{datos.trvmq4_pro | number:'1.2-2' }}</td>
+                </tr>
+
+             
+
+              </tbody>
+            </table>
+            <div class="flex-calibracion" style="margin-top: 0.3rem; font-size: 8pt;">
+              <table class="TableMini">
+                <tbody>
+                  <tr>
+                    <td class="mini2"></td>
+                    <td class="mini2">Humedad<br>relativa (%)</td>
+                    <td class="mini2">Temperatura<br>ambiente (°C)</td>
+                  </tr>
+                  <tr>
+                    <td class="mini2">Mínimo</td>
+                    <td class="mini2">{{datos.humedad_min | number:'1.2-2'}}</td>
+                    <td class="mini2">{{datos.tem_amb_min | number:'1.1-2'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="noborder mini2">Máximo</td>
+                    <td class="noborder mini2">{{datos.humedad_max | number:'1.2-2'}}</td>
+                    <td class="noborder mini2">{{datos.tem_amb_max | number:'1.1-2'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="mini2">Promedio</td>
+                    <td class="mini2">{{datos.humedad_pro | number:'1.2-2'}}</td>
+                    <td class="mini2">{{datos.tem_amb_pro | number:'1.1-1'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="margin-left: 0.3rem;">
+                <p class="text-left m-0 p-0">
+                  Este certificado expresa el resultado de las mediciones realizadas. No podrá ser reproducido total o
+                  parcialmente
+                  excepto cuando se haya obtenido previamente permiso por escrito del Laboratorio que lo emite.
+                </p>
+                <p class="text-left m-0 p-0">
+                  Los resultados contenidos en el siguiente certificado se refieren al momento y condiciones en que se
+                  realizaron las mediciones. El laboratorio que lo emite no se responsabiliza de los perjuicios que
+                  puedan
+                  derivarse del uso inadecuado de los instrumentos calibrados.
+                </p>
+                <p class="text-left m-0 p-0">
+                  El laboratorio no se responsabiliza de la información suministrada por el cliente (Dirección y NIT).
+                  El medidor bajo calibración no fue objeto de muestreo por parte de este laboratorio, el ítem fue
+                  calibrado
+                  tal como se recibió.
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">INCERTIDUMBRE DE LA MEDICIÓN</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="text-left" style="padding: 0.3rem;">
+            La incertidumbre reportada es la estándar compuesta multiplicada por el factor de cubrimiento K = 2,
+            con el cual se logró una distribución normal y un nivel de confianza de aproximadamente 95%.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8" class="thead">RESULTADOS DE LA CALIBRACIÓN</td>
+        </tr>
+        <tr>
+          <td>Prueba</td>
+          <td>Caudal de Prueba (l/h) Promedio</td>
+          <td>Volumen Medidor (Vi) Promedio</td>
+          <td>Volumen Real (Va) Promedio</td>
+          <td>Error Promedio (%)</td>
+          <td>Incertidumbre Expandida (%)</td>
+          <td>EMP + / -</td>
+          <td>Factor de Cubrimiento K</td>
+        </tr>
+        <tr>
+          <td>{{item.q1_resultados.prueba}}</td>
+          <td>{{item.q1_resultados.nominal  }}</td>
+          <td>{{item.q1_resultados.Dvx }}</td>
+          <td>{{item.q1_resultados.vx }}</td>
+          <td>{{item.q1_resultados.Error_promedio }}</td>
+          <td>{{item.q1_resultados.Ue }}</td>
+          <td>5</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>{{item.q2_resultados.prueba}}</td>
+          <td>{{item.q2_resultados.nominal   }}</td>
+          <td>{{item.q2_resultados.Dvx }}</td>
+          <td>{{item.q2_resultados.vx }}</td>
+          <td>{{item.q2_resultados.Error_promedio }}</td>
+          <td>{{item.q2_resultados.Ue }}</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>{{item.q3_resultados.prueba}}</td>
+          <td>{{item.q3_resultados.nominal   }}</td>
+          <td>{{item.q3_resultados.Dvx }}</td>
+          <td>{{item.q3_resultados.vx }}</td>
+          <td>{{item.q3_resultados.Error_promedio }}</td>
+          <td>{{item.q3_resultados.Ue }}</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr *ngIf="q4.length>0">
+          <td>{{item.q4_resultados.prueba}}</td>
+          <td>{{item.q4_resultados.nominal   }}</td>
+          <td>{{item.q4_resultados.Dvx }}</td>
+          <td>{{item.q4_resultados.vx }}</td>
+          <td>{{item.q4_resultados.Error_promedio }}</td>
+          <td>{{item.q4_resultados.Ue }}</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td colspan="8" class="paddingtotal text-left">
+            <p class="m-0 p-0">
+              <sup class="mr-1">1</sup>
+              Q1 o Qmin caudal mínimo, Q2 o Qt caudal transición, Q3 o Qp caudal permanente;
+              estas definiciones corresponden a los numerales 3.3.2, 3.3.3, 3.3.4 y 3.3.5 de
+              la NTC-ISO 4064-1:2016.
+            </p>
+            <p class="m-0 p-0">
+              <sup class="mr-1">2</sup>
+              El error máximo permisible corresponde al establecido con el cliente en la revisión del contrato.
+            </p>
+            <p class="m-0 p-0">
+              <sup class="mr-1">3</sup>
+              Los datos reportados en la sección de RESULTADOS DE LA CALIBRACIÓN son el resultado de tres repeticiones
+              por
+              caudal.
+            </p>
+          </td>
+        </tr>     
+        <tr>
+          <td colspan="8" class="thead">FIRMAS AUTORIZADAS</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="border-0">
+            <div class="flex-firma">
+              <p class="mb-6">Calibró:</p>
+              <p class="border-top ml-3 mr-3 mt-2 mb-1">{{item.calibro?.nombre}} {{item.calibro?.apellido}}<br>{{item.calibro?.cargo}}</p>
+            </div>
+          </td>
+          <td colspan="4" class="border-0">
+            <div class="flex-firma">
+              <p class="mb-6">Revisó y aprobó:</p>
+              <p class="border-top ml-3 mr-3 mt-2 mb-1">{{item.ingreso?.nombre}} {{item.ingreso?.apellido}}<br>{{item.ingreso?.cargo}}</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8" class="border-0 upper">- FIN DEL CERTIFICADO -</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="border-0">
+            <p>Página 1 de 1</p>
+          </td>
+          <td colspan="6" class="border-0">
+            <p class="text-center" style="margin-left: 20px;">SERVAF S.A. E.S.P.<br>Carrera 9 Calle 27 Esquina Estación Torasso<br>Teléfono 435-1268 Ext.: 206</p>
+          </td>
+          <td class="border-0">
+            <p>LCM-FOR-014  <br> Versión 9</p>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- <div class="flex-footer m-0 p-0 all" style="margin-left: 15px; font-size: 9pt; text-align: center;">
+    <p>Página 1 de 1</p>
+    <p class="ml-2">SERVAF S.A. E.S.P.<br>Carrera 9 Calle 27 Esquina Estación Torasso<br>Teléfono 435-1268 Ext.: 206</p>
+    <p>LCM-FOR-014 - Versión 9</p>
+  </div> -->
+  <div class="text-center mb-3 p-0 all" *ngIf="item?.derogado=='true'">
+    <div style="font-size: 13px;">
+      <p scope="col"><b class="text-danger">Este certificado de No:</b><b class="text-black"> {{item.year}}-{{item.consecutivo}} </b> <b class="text-danger"> Ha sido reemplazado por el certificado No:</b> 
+      <b class="text-black">{{item.oldcertificado}}</b> </p>         
+    </div>
+  </div>
+  <div class="text-center mb-1 p-0 all" *ngIf="item?.derogado=='false' && item?.oldcertificado">
+    <div style="font-size: 13px;">
+      <p scope="col"><b class="text-danger">Este certificado de No:</b><b class="text-black"> {{item.year}}-{{item.consecutivo}} </b> <b class="text-danger"> Remplaza a el certificado No:</b> 
+      <b class="text-black">{{item.oldcertificado}}</b> </p>         
+    </div>
+ 
+  </div>
+</div>

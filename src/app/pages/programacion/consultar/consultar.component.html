@@ -1,0 +1,64 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row m-0 p-0">
+      <div class="col-sm-12 mt-2 p-0">
+        <ion-item color="primary">
+          <ion-label>Consulte sus Ordenes de Trabajo</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mb-3">
+        <form action="" [formGroup]="form">
+          <ion-item>
+            <ion-label>Desde</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD" placeholder="Seleccionar Fecha" formControlName="inicio"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hasta</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD" placeholder="Seleccionar Fecha" formControlName="fin"></ion-datetime>
+          </ion-item>
+  
+          <ion-item button (click)="get()"  color="primary" text-center>
+            <ion-label>Buscar</ion-label>
+          </ion-item>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr text-center>
+              <th scope="col"># Orden</th>
+              <th scope="col">Encargado</th>
+              <th scope="col">Numero de Medidores</th>
+              <th scope="col">Fecha de Ingreso</th>
+              <th scope="col">Fecha de Programacion</th>
+              <th scope="col">Descargar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ordenes" text-center>
+              <th scope="row">{{item.orden}}</th>
+              <td>{{item.encargado?.nombre}} {{item.encargado?.apellido}}</td>
+              <td>{{item.medidores.length}}</td>
+              <td>{{item.fecha | date:'yyyy-MM-dd' }}</td>
+              <td>{{item.fecha_programacion | date:'yyyy-MM-dd' }}</td>
+              <td>
+                <ion-button (click)="go(item._id)" size="small" color="primary">
+                  <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+                </ion-button>
+              </td>
+            </tr>        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ion-content>

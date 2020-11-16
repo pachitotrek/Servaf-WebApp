@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <div class="col-sm-6 textura">
+
+        <div class="box" text-center>
+          <ion-card class="p-4 box-card">
+            <ion-card-header>              
+              <ion-card-title class="text-white h2-responsive">Iniciar Sesion</ion-card-title>
+            </ion-card-header>
+            <form [formGroup]="form" (ngSubmit)="login()">
+              <div class="form-group">
+                <label class="text-white">USUARIO</label>
+                <input type="email" autocomplete="off" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp" formControlName="username" placeholder="Ingrese Usuario">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+              <div class="form-group">
+                <label class="text-white">CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="pass" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <ion-button type="submit" color="success" [disabled]="!form.valid">
+                ENTRAR
+              </ion-button>         
+            
+            </form>
+          </ion-card>
+        </div>
+
+      </div>
+      <div class="col-sm-6 fondo" text-center>
+        <img src="/assets/images/logo_servaf.svg" class="img" alt="">
+        <ion-text color="light" class="ion-no-padding">
+          <p class="ion-no-padding ion-no-margin">Bienvenido al Sistema de Información de la<br>
+            Empresa de Servicios de Florencia </p>
+        </ion-text>
+        <div class="div">
+          <ion-text color="light">
+            <span class="span">Desarrollado por:</span>
+          </ion-text>
+          <img src="/assets/images/logo_saufer.svg" class="img-2" alt="">
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

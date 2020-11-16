@@ -1,0 +1,378 @@
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-3">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Panel de Correcion del Certificado</ion-label>
+          </ion-item>
+        </div>     
+      </div>
+      <div class="col-sm-12">
+        <div class="text-center">
+          <h4>Datos Generales</h4>
+        </div>
+        <div *ngIf="item">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Serial</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Año</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Apto</th>         
+              </tr>
+            </thead>
+            <tbody>
+              <tr  class="text-center">
+                <th scope="row">{{item.orden}}</th>
+                <td>{{item.datos.serie}}</td>
+                <td>{{item.datos.marca?.titulo}}</td>
+                <td>{{item.datos.modelo?.titulo}}</td>
+                <td>{{item.datos.fabricacion}}</td>
+                <td>{{item.metrologicas.principio}}</td>
+                <td>{{item.cliente?.nombre}}</td>
+                <td *ngIf="item.estado=='true'">Si</td>
+                <td *ngIf="item.estado=='false'">No</td>              
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center" *ngIf="item">
+          <ion-item color="medium" lines="none" *ngIf="item?.derogado =='false'">
+            <ion-label>Editar Caracteristicas Generales</ion-label>
+            <ion-button (click)="launcheditar()" slot="end" expand="block" color="primary">
+              <ion-icon slot="icon-only" name="share-alt"></ion-icon> Editar
+            </ion-button>
+          </ion-item>
+        </div>    
+      </div>
+
+      <div class="col-sm-12 mt-5">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Panel de Correcion de Caracteristicas Metrologicas</ion-label>
+          </ion-item>
+        </div>     
+
+        <div class="text-center" *ngIf="item">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"># Certificado</th>
+                <th scope="col">Norma</th>
+                <th scope="col">Caudal Permanente</th>
+                <th scope="col">Principio Fisico</th>
+                <th scope="col">Rango [m3]</th>
+                <th scope="col">Division Escala</th>
+                <th scope="col">Diametro</th>
+                <th scope="col" *ngIf="item.type !=='3'">Rango</th>
+                <th scope="col" *ngIf="item.type =='3'" >Clase</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{item.year}}-{{item.consecutivo}}</th>
+                <td>{{item.metrologicas?.norma}}</td>
+                <td>{{item.metrologicas?.q3}}</td>
+                <td>{{item.metrologicas?.principio}}</td>
+                <td>{{item.metrologicas?.rango}}</td>
+                <td>{{item.metrologicas?.escala}}</td>
+                <td>{{item.metrologicas?.diametro}}</td>
+                <td *ngIf="item.type !=='3'">R{{item.metrologicas?.relacion}}</td>
+                <td *ngIf="item.type =='3'">{{item.metrologicas?.clase}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+            
+        <div class="text-center mt-3" *ngIf="item">
+          <ion-item color="medium" lines="none" *ngIf="item?.derogado =='false'">
+            <ion-label>Editar Caracteristicas Metrologicas</ion-label>
+            <ion-button (click)="launcheditar2()" slot="end" expand="block" color="primary">
+              <ion-icon slot="icon-only" name="share-alt"></ion-icon> Editar
+            </ion-button>
+          </ion-item>
+        </div>
+      </div>
+
+
+      <div class="col-sm-12 mt-5">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Editar Condiciones Ambientales</ion-label>
+          </ion-item>         
+        </div>
+        <div *ngIf="ambientales">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Prueba</th>
+                <th scope="col">Temp Ambiente [°C]</th>
+                <th scope="col">Humedad %</th>
+                <th scope="col" *ngIf="item?.derogado =='false'">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of ambientales; let i = index"  class="text-center">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{x.prueba}}</td>
+                <td>{{x.temp_ambiente | number:'1.2-2'}}</td>
+                <td>{{x.humedad | number:'1.2-2'}}</td>  
+                <td class="p-0" *ngIf="item?.derogado =='false'">
+                  <ion-button (click)="editarambientales(x)" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>         
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="col-sm-12">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Prueba Q1</ion-label>
+          </ion-item>  
+        </div>
+        <div *ngIf="q1">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Caudal [ L/h ]</th>
+                <th scope="col">Presion Entrada [ kPa ]</th>
+                <th scope="col">Presion Salida [ kPa ]</th>
+                <th scope="col">Temperatura del Agua [ °C ]</th>
+                <th scope="col">Temperatura del R.V.M [ °C ]</th>
+                <th scope="col">Volumen del R.V.M [ L ]</th>
+                <th scope="col">Tiempo [ h ]</th>
+                <th scope="col">Inicial </th>
+                <th scope="col">Final </th>
+                <th scope="col" *ngIf="item?.derogado =='false'">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of q1; let i = index" class="text-center">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{a.caudal | number:'1.2-2'}}</td>
+                <td>{{a.pentrada | number:'1.2-2'}}</td>
+                <td>{{a.psalida | number:'1.2-2'}}</td>
+                <td>{{a.tempagua | number:'1.2-2'}}</td>
+                <td>{{a.temprvm | number:'1.2-2'}}</td>
+                <td>{{a.volumenrvm | number:'1.2-2'}}</td>
+                <td>{{a.time / 3600  | number:'1.2-2'}}</td>
+                <td>{{a.inicial  | number:'1.2-2'}}</td>
+                <td>{{a.final  | number:'1.2-2'}}</td>
+                <td class="p-0" *ngIf="item?.derogado =='false'">
+                  <ion-button (click)="editar(a,'1')" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>             
+            </tbody>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <ion-item color="primary" lines="none" text-center>
+          <ion-label>Prueba Q2</ion-label>
+        </ion-item>  
+        <div *ngIf="q2">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Caudal [ l/h ]</th>
+                <th scope="col">Presion Entrada [ kpa ]</th>
+                <th scope="col">Presion Salida [ kpa ]</th>
+                <th scope="col">Temperatura del Agua [ C ]</th>
+                <th scope="col">Temperatura del R.V.M [ C ]</th>
+                <th scope="col">Volumen del R.V.M [ L ]</th>
+                <th scope="col">Tiempo [ h ]</th>
+                <th scope="col">Inicial </th>
+                <th scope="col">Final </th>
+                <th scope="col" *ngIf="item?.derogado =='false'">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of q2; let i = index" class="text-center">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{a.caudal | number:'1.2-2'}}</td>
+                <td>{{a.pentrada | number:'1.2-2'}}</td>
+                <td>{{a.psalida | number:'1.2-2'}}</td>
+                <td>{{a.tempagua | number:'1.2-2'}}</td>
+                <td>{{a.temprvm | number:'1.2-2'}}</td>
+                <td>{{a.volumenrvm | number:'1.2-2'}}</td>
+                <td>{{a.time / 3600  | number:'1.2-2'}}</td>
+                <td>{{a.inicial  | number:'1.2-2'}}</td>
+                <td>{{a.final  | number:'1.2-2'}}</td>
+                <td class="p-0" *ngIf="item?.derogado =='false'">
+                  <ion-button (click)="editar(a,'2')" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>             
+            </tbody>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Prueba Q3</ion-label>
+          </ion-item>  
+        </div>
+        <div *ngIf="q3">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Caudal [ l/h ]</th>
+                <th scope="col">Presion Entrada [ kpa ]</th>
+                <th scope="col">Presion Salida [ kpa ]</th>
+                <th scope="col">Temperatura del Agua [ C ]</th>
+                <th scope="col">Temperatura del R.V.M [ C ]</th>
+                <th scope="col">Volumen del R.V.M [ L ]</th>
+                <th scope="col">Tiempo [ h ]</th>
+                <th scope="col">Inicial </th>
+                <th scope="col">Final </th>
+                <th scope="col" *ngIf="item?.derogado =='false'">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of q3; let i = index" class="text-center">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{a.caudal | number:'1.2-2'}}</td>
+                <td>{{a.pentrada | number:'1.2-2'}}</td>
+                <td>{{a.psalida | number:'1.2-2'}}</td>
+                <td>{{a.tempagua | number:'1.2-2'}}</td>
+                <td>{{a.temprvm | number:'1.2-2'}}</td>
+                <td>{{a.volumenrvm | number:'1.2-2'}}</td>
+                <td>{{a.time / 3600  | number:'1.2-2'}}</td>
+                <td>{{a.inicial  | number:'1.2-2'}}</td>
+                <td>{{a.final  | number:'1.2-2'}}</td>
+                <td class="p-0" *ngIf="item?.derogado =='false'" >
+                  <ion-button (click)="editar(a,'3')" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>             
+            </tbody>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Prueba Q4</ion-label>
+          </ion-item>  
+        </div>
+        <div *ngIf="q4">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Caudal [ l/h ]</th>
+                <th scope="col">Presion Entrada [ kpa ]</th>
+                <th scope="col">Presion Salida [ kpa ]</th>
+                <th scope="col">Temperatura del Agua [ C ]</th>
+                <th scope="col">Temperatura del R.V.M [ C ]</th>
+                <th scope="col">Volumen del R.V.M [ L ]</th>
+                <th scope="col">Tiempo [ h ]</th>
+                <th scope="col">Inicial </th>
+                <th scope="col">Final </th>
+                <th scope="col" *ngIf="item?.derogado =='false'">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of q4; let i = index" class="text-center">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{a.caudal | number:'1.2-2'}}</td>
+                <td>{{a.pentrada | number:'1.2-2'}}</td>
+                <td>{{a.psalida | number:'1.2-2'}}</td>
+                <td>{{a.tempagua | number:'1.2-2'}}</td>
+                <td>{{a.temprvm | number:'1.2-2'}}</td>
+                <td>{{a.volumenrvm | number:'1.2-2'}}</td>
+                <td>{{a.time / 3600  | number:'1.2-2'}}</td>
+                <td>{{a.inicial  | number:'1.2-2'}}</td>
+                <td>{{a.final  | number:'1.2-2'}}</td>
+                <td class="p-0" *ngIf="item?.derogado =='false'" >
+                  <ion-button (click)="editar(a,'4')" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>             
+            </tbody>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-12" *ngIf="item?.derogado =='false'">
+        <ion-item color="medium">
+          <ion-label>Generar Denuevo el certificado</ion-label>
+          <ion-button (click)="generar()" expand="block" shape="round" slot="end" color="primary">
+            Generar
+          </ion-button>
+        </ion-item>
+      </div>
+
+      <div class="col-sm-12 mt-5" *ngIf="item?.derogado =='true'">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Certificado No Valido</h1>
+            <p class="lead">Este Certificado ya no es valido. Ha sido reemplazado por el certificado # {{item.oldcertificado}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 mt-5" *ngIf="item?.derogado =='false'">
+        <div class="text-center">
+          <ion-item color="primary" lines="none" text-center>
+            <ion-label>Declarar No Conforme el certificado</ion-label>
+          </ion-item>  
+        </div>
+        <div class="text-center mb-5">
+          <form action="" [formGroup]="form">
+            <div class="form-row mb-5">
+              <div class="col-sm-12">
+                <ion-item lines="none">
+                  <ion-label>Desea Generar un nuevo certificado</ion-label>
+                  <ion-select placeholder="Seleccione" formControlName="nuevo">
+                    <ion-select-option value="0">Si</ion-select-option>
+                    <ion-select-option value="1">No</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </div>
+            <div class="form-row mb-5">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Observaciones</span>
+                  </div>
+                  <textarea class="form-control" aria-label="With textarea" formControlName="observacion" placeholder="Describa de manera corta la razon por la cual desea declarar no conforme el certificado"></textarea>
+                </div>
+              </div>
+            </div>            
+            <ion-item color="ligth">
+              <ion-label>Declarar No conforme</ion-label>
+              <ion-button (click)="derogar()" expand="block" shape="round" color="danger" [disabled]="!form.valid">
+                Salvar
+              </ion-button>
+            </ion-item>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,172 @@
+<ion-content id="noprint">
+  <div class="container" *ngIf="ready">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Certificado Generado con exito !!</h1>
+              <p class="lead">Descargue de nuevo el certificado</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12 mt-5 mb-5" id="noprint">
+        <ion-item color="primary" id="noprint">
+          <ion-button (click)="print()" expand="block" slot="end" color="light" id="noprint">
+            Imprimir
+          </ion-button>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div id="print">
+  <div id="legal" *ngIf="ready">
+    <div class="encabezado">
+      <div class="logo1">
+        <img src="/assets/images/servaf.png" style="width: 120px; margin-right: 1rem;height: 120px;"
+          alt="Logo de Servaf S.A. E.S.">
+      </div>
+      <div class="membreteL">
+        LABORATORIO DE MEDIDORES <br>
+        EMPRESA DE SERVICIOS DE FLORENCIA S.A. E.S. <br>
+        SERVAF S.A. E.S.P. <br>
+        N.I.T.: 800.169.470-7
+      </div>
+
+    </div>
+
+
+    <div class="contenido">
+      <table class="Table1">
+        <tbody>
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">DATOS DEL SOLICITANTE</td>
+          </tr>
+          <tr>
+            <td colspan="1" class="thead my-1">NOMBRE SOLICITANTE</td>
+            <td colspan="2" class="upper my-1">{{item?.cliente?.nombre}}</td>
+            <td colspan="2" class="thead my-1">INFORME DE CALIBRACIÓN No.</td>
+            <td colspan="3" class="upper my-1" style="font-weight: bold;">
+              {{item.year}}-{{item.consecutivo}}</td>
+          </tr>
+          <tr>
+            <td colspan="1" class="thead my-1">DIRECCIÓN SOLICITANTE</td>
+            <td colspan="2" class="my-1">{{item?.cliente?.direccion}}</td>
+            <td class="thead my-1">FECHA DE RECEPCIÓN</td>
+            <td class="my-1">{{item?.orden_entrada?.fecha | date:'yyyy-MM-dd'}}</td>
+            <td class="thead">FECHA DE VERIFICACIÓN</td>
+            <td class="my-1" colspan="3">{{item?.orden_trabajo?.fecha | date:'yyyy-MM-dd'}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="thead my-1">{{item?.cliente?.identificacion}}</td>
+            <td colspan="6" class="text-left my-1"> {{item?.cliente?.numero}}</td>
+          </tr>
+          <tr>
+            <td colspan="3" class="thead my-1">INSTRUMENTO A CALIBRAR</td>
+            <td colspan="5" class="thead my-1">MEDIDOR DE AGUA</td>
+          </tr>
+          <tr>
+            <td colspan="8" style="color: #ffffff !important;"></td>
+          </tr>
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">DESCRIPCIÓN DEL INSTRUMENTO A CALIBRAR</td>
+          </tr>
+          <tr>
+            <td class="thead">SERIE</td>
+            <td class="thead">MARCA</td>
+            <td class="thead">DIÁMETRO</td>
+            <td class="thead">TIPO</td>
+            <td class="thead">CLASE</td>
+            <td class="thead">CÓDIGO</td>
+            <td class="thead">LECTURA</td>
+          </tr>
+          <tr>
+            <td>{{item?.datos?.serie}}</td>
+            <td>{{item?.datos?.marca?.titulo}}</td>
+            <td>{{item?.metrologicas?.diametro}}</td>
+            <td>{{item?.metrologicas?.principio}}</td>
+            <td>{{item?.datos?.modelo?.titulo}}</td>
+            <td>{{item?.orden}}</td>
+            <td>{{item?.datos?.lectura}}</td>
+          </tr>
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">DECLARACIÓN DE INCONFORMIDAD DEL MEDIDOR:</td>
+          </tr>
+          <tr>
+            <td colspan="5" rowspan="2" class="text-left">
+              EL MEDIDOR PRESENTA REGISTRO DE ANOMALÍAS EN SU RECEPCIÓN PARA SER CALIBRADO DE ACUERDO CON LAS
+              ESPECIFICACIONES TÉCNICAS DE LA NORMA APLICADA.
+            </td>
+            <td class="thead" colspan="4">NORMA : AÑO</td>
+          </tr>
+          <tr>
+            <td colspan="2">{{item?.metrologicas?.norma}}</td>
+          </tr>
+          <tr>
+            <td colspan="8" style="color: #ffffff !important;"></td>
+          </tr>
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">OBSERVACIONES:</td>
+          </tr>
+          <tr>
+            <td colspan="6" class="thead text-left">DECLARACIÓN DE INCONFORMIDAD DEL MEDIDOR:</td>
+            <td colspan="2" class="thead">RESULTADOS</td>
+          </tr>
+          <tr *ngFor="let a of item.incidencias; let i = index">
+            <td>{{i + 1 }}</td>
+            <td colspan="5" class="text-left upper">{{a}}</td>
+            <td colspan="2"> X </td>
+          </tr>
+
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">REFERENCIAS NORMATIVAS: LEY 142 ART. 144 DE 1974;
+              RESOLUCIÓN 457 DE 2008 ART. 13; CIRCULAR 006 DE 2007 2,7,1.</td>
+          </tr>
+          <tr>
+            <td colspan="8" class="thead" style="font-weight: bold;">FIRMAS AUTORIZADAS</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="font-weight: bold;">Elaboró</td>
+            <td colspan="4" class="thead">REGISTRO FOTOGRÁFICO</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="height: 100px;">
+            </td>
+            <td colspan="4" rowspan="5">
+              <div *ngFor="let i of imagenes" class="foto">
+                <img [src]="i.imagen | imagen:'medidor'" height="200" alt="">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4"><b>Metrólogo</b><br>Fabio Aturo Zambrano Ico</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="font-weight: bold;">Revisó</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="height: 100px;"></td>
+          </tr>
+          <tr>
+            <td colspan="4"><b>Coordinador Laboratorio</b><br>Edgar Fernando Lozano Calderón</td>
+          </tr>
+          <tr>
+            <td colspan="8" class="border-0 upper">- FIN DEL INFORME -</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <footer class="flex-footer" style="font-size: 9pt; text-align: center;margin-top: 100px;">
+      <p>Página 1 de 1</p>
+      <p>SERVAF S.A. E.S.P.<br>Carrera 9 Calle 27 Esquina Estación Torasso<br>Teléfono 435-1268 Ext.: 206</p>
+      <p>INFORME DE CALIBRACIÓN<br>LCM-FOR-023 - Versión 1</p>
+    </footer>
+  </div>
+</div>

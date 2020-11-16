@@ -1,0 +1,8 @@
+<ion-list>
+  <!-- <ion-item href="https://manual.plantaceibas.cf/" target="_blank" >
+    Manual
+  </ion-item> -->
+  <ion-item *ngFor="let item of menu" (click)="make(item)">
+    <ion-label>{{item.pagina}}</ion-label>
+  </ion-item>
+</ion-list>

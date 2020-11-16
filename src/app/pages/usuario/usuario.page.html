@@ -1,0 +1,114 @@
+<ion-header>
+  <app-menu></app-menu>
+ </ion-header>
+ 
+ <ion-content>
+ 
+   <div class="container-fluid">
+ 
+     <div class="row" *ngIf="ready">
+       <div class="col-sm-8">
+         <div class="text-center mt-2">
+           <ion-item text-center color="primary">
+             <ion-label>Mi Usuario</ion-label>
+           </ion-item>
+           <div class="text-center table-responsive">
+             <table class="table">
+               <thead class="thead-dark">
+                 <tr>
+                   <th scope="col">Nombre</th>
+                   <th scope="col">Apellido</th>
+                   <th scope="col">Username</th>
+                   <th scope="col">Cargo</th>
+                   <th scope="col">Gestionar</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <th scope="row">{{usuario.nombre}}</th>
+                   <td>{{usuario.apellido}}</td>
+                   <td>{{usuario.username}}</td>
+                   <td>{{usuario.cargo}}</td>
+                   <td style="max-width: 130px;" text-center>
+                     <ion-button (click)="setUser(usuario)" size="small" color="success">
+                       <ion-icon slot="icon-only" name="create"></ion-icon>
+                     </ion-button>
+                     <ion-button (click)="setPass(usuario._id)" size="small" color="secondary">
+                       <ion-icon slot="icon-only" name="lock"></ion-icon>
+                     </ion-button>
+                     <ion-button (click)="delete(usuario)" size="small" color="danger">
+                       <ion-icon slot="icon-only" name="trash"></ion-icon>
+                     </ion-button>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>      
+           </div>
+         </div>
+       </div>
+       <div class="col-sm-4">
+         <div *ngIf="pannel">
+           <ion-item color="primary" text-center class="mt-2" *ngIf="edit">
+             <ion-icon name="refresh-circle" slot="end" (click)="refresh()"></ion-icon>
+             <ion-label>Editar Usuario</ion-label>
+           </ion-item> 
+         </div>
+         <form [formGroup]="form" (ngSubmit)="crear()" *ngIf="pannel">
+           <div class="form-group">
+             <label>Nombre</label>
+             <input type="text" class="form-control" formControlName="nombre" aria-describedby="">
+             <small class="form-text text-muted">Nombre del Usuario</small>
+           </div>
+           <div class="form-group">
+             <label>Apellido</label>
+             <input type="text" class="form-control" formControlName="apellido" aria-describedby="">
+             <small class="form-text text-muted">Apellido del Usuario</small>
+           </div>
+           <div class="form-group">
+            <label>Usuario</label>
+            <input type="text" class="form-control" formControlName="username" aria-describedby="">
+            <small class="form-text text-muted">Usuario para ingresar</small>
+          </div>
+           <div class="form-group">
+             <label>Cargo</label>
+             <input type="text" class="form-control" formControlName="cargo" aria-describedby="">
+             <small class="form-text text-muted">Cargo del Usuario</small>
+           </div>     
+           <div class="form-group">
+             <label for="exampleFormControlSelect1">Tipo de Usuario</label>
+             <select class="form-control" id="exampleFormControlSelect1" formControlName="role">
+               <option value="1">Administrador</option>
+               <option value="2">Coordinador</option>
+               <option value="3">Operador</option>
+             </select>
+           </div>     
+          
+           <button type="submit" class="btn btn-success" [disabled]="!form.valid"  *ngIf="!edit">Crear Usuario</button>
+           <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="update()"  *ngIf="edit">Actualizar Usuario</button>
+         </form>
+         <ion-item color="primary" text-center class="mt-2" *ngIf="editpass" >
+           <ion-icon name="refresh-circle" slot="end" (click)="refresh()"></ion-icon>
+           <ion-label>Cambiar Contraseña del Usuario</ion-label>
+         </ion-item>  
+         <form [formGroup]="form2" (ngSubmit)="updatePass()" *ngIf="editpass">
+           <div class="form-group">
+             <label>Nueva Contraseña</label>
+             <input type="password" class="form-control" formControlName="pass" aria-describedby="">
+             <small class="form-text text-muted">Nueva Contraseña del Usuario</small>
+           </div>
+           <div class="form-group">
+             <label>Repetir la Contraseña</label>
+             <input type="password" class="form-control" formControlName="pass2" aria-describedby="">
+             <small class="form-text text-muted">Repita Contraseña del Usuario</small>
+           </div>          
+           <button type="submit" class="btn btn-primary" [disabled]="!form2.valid">Actualizar Usuario</button>
+         </form> 
+       </div>
+ 
+     </div>
+ 
+   </div>
+ 
+ 
+ </ion-content>
+ 

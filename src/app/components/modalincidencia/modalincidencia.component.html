@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="container m-0 p-0">
+    <div class="m-0 p-0">
+      <ion-item color="primary">
+        <ion-label>Agregar Nueva Incidencia</ion-label>
+      </ion-item>
+
+    </div>
+    <div class="p-3">
+      <form [formGroup]="form" class="mb-4" (ngSubmit)="crear()">
+        <div class="form-group">
+          <label>Nueva Nueva Incidencia</label>
+          <input type="text" class="form-control" formControlName="titulo" aria-describedby="">
+          <small class="form-text text-muted">Nueva Incidencia</small>
+        </div>   
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Agregar</button>
+      </form>
+
+
+    </div>
+  </div>
+
+</ion-content>

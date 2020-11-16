@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="primary">
+          <ion-label>Editar Datos</ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-12 mt-4 mb-3">
+        <form action="" [formGroup]="form" (ngSubmit)="update()">
+          <div class="form-group">
+            <label>caudal</label>
+            <input type="text" class="form-control" formControlName="caudal" aria-describedby="">
+            <small class="form-text text-muted">caudal</small>
+          </div>
+          <div class="form-group">
+            <label>Presion Entrada</label>
+            <input type="text" class="form-control" formControlName="pentrada" aria-describedby="">
+            <small class="form-text text-muted">Presion Entrada</small>
+          </div>
+          <div class="form-group">
+            <label>Presion Salida</label>
+            <input type="text" class="form-control" formControlName="psalida" aria-describedby="">
+            <small class="form-text text-muted">Presion de Salida</small>
+          </div>
+          <div class="form-group">
+            <label>Temperatura de Agua</label>
+            <input type="text" class="form-control" formControlName="tempagua" aria-describedby="">
+            <small class="form-text text-muted">Temperatura de Agua</small>
+          </div>
+          <div class="form-group">
+            <label>Temperatura de R.V.M</label>
+            <input type="text" class="form-control" formControlName="temprvm" aria-describedby="">
+            <small class="form-text text-muted">Temperatura de R.V.M</small>
+          </div>
+          <div class="form-group">
+            <label>Volumen R.V.M</label>
+            <input type="text" class="form-control" formControlName="volumenrvm" aria-describedby="">
+            <small class="form-text text-muted">Volumen R.V.M</small>
+          </div>
+          <div class="form-group">
+            <label>Tiempo</label>
+            <input type="text" class="form-control" formControlName="time" aria-describedby="">
+            <small class="form-text text-muted">Tiempo</small>
+          </div>
+          <div class="form-group">
+            <label>Lectura Inicial</label>
+            <input type="text" class="form-control" formControlName="inicial" aria-describedby="">
+            <small class="form-text text-muted">Lectura Inicial</small>
+          </div>
+          <div class="form-group">
+            <label>Lectura Final</label>
+            <input type="text" class="form-control" formControlName="final" aria-describedby="">
+            <small class="form-text text-muted">Lectura Final</small>
+          </div>      
+
+          <button type="submit" class="btn btn-success" [disabled]="!form.valid">Actualizar</button>
+          <button type="button" class="btn btn-danger ml-3" [disabled]="!form.valid" (click)="delete()" >Eliminar</button>
+        </form>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

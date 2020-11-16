@@ -1,0 +1,120 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="dark" class="mt-2">
+          <ion-label>Medidores Disponibles</ion-label>
+        </ion-item>
+      </div>   
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="col-sm-12">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Serial</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <!-- <th scope="col">Año</th> -->
+                <th scope="col">Tipo</th>
+                <th scope="col">Norma</th>
+                <th scope="col">Clase o Rango</th>
+                <th scope="col">Diametro</th>
+                <th scope="col">Apto</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Seleccionar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of medidores" class="text-center">
+                <th scope="row">{{item.orden}}</th>
+                <td>{{item.datos.serie}}</td>
+                <td>{{item.datos.marca?.titulo}}</td>
+                <td>{{item.datos.modelo?.titulo}}</td>
+                <!-- <td>{{item.datos.fabricacion}}</td> -->
+                <td>{{item.metrologicas.principio}}</td>
+                <td>{{item.metrologicas.norma}}</td>
+                <td *ngIf="item.type !=='3'">R{{item.metrologicas?.relacion}}</td>
+                <td *ngIf="item.type =='3'"> {{item.metrologicas?.clase}}</td>
+                <td> {{item.metrologicas?.diametro}} </td>
+                <td *ngIf="item.estado=='true'">Si</td>
+                <td *ngIf="item.estado=='false'">No</td>
+                <td>{{item.cliente?.nombre}}</td>
+                <td class="p-0">
+                  <ion-button (click)="push(item)" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="share-alt"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item color="dark" class="mt-2">
+          <ion-label>Medidores Seleccionados</ion-label>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="col-sm-12">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Serial</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <!-- <th scope="col">Año</th> -->
+                <th scope="col">Tipo</th>
+                <th scope="col">Norma</th>
+                <th scope="col">Clase o Rango</th>
+                <th scope="col">Diametro</th>
+                <th scope="col">Apto</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Seleccionar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of select" class="text-center">
+                <th scope="row">{{item.orden}}</th>
+                <td>{{item.datos.serie}}</td>
+                <td>{{item.datos.marca?.titulo}}</td>
+                <td>{{item.datos.modelo?.titulo}}</td>              
+                <td>{{item.metrologicas.principio}}</td>
+                <td>{{item.metrologicas.norma}}</td>
+                <td *ngIf="item.type !=='3'">R{{item.metrologicas?.relacion}}</td>
+                <td *ngIf="item.type =='3'"> {{item.metrologicas?.clase}}</td>
+                <td> {{item.metrologicas?.diametro}} </td>
+                <td *ngIf="item.estado=='true'">Si</td>
+                <td *ngIf="item.estado=='false'">No</td>
+                <td>{{item.cliente?.nombre}}</td>
+                <td class="p-0">
+                  <ion-button (click)="delete(item)" size="small" color="primary">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                  </ion-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item lines="none">
+          <ion-button (click)="next()" expand="block" color="primary" slot="end" size="small" *ngIf="select.length > 0">
+            Siguiente
+          </ion-button>         
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content>

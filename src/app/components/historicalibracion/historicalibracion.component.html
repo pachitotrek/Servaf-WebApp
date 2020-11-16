@@ -1,0 +1,40 @@
+<ion-content>
+  <table class="table" style="font-size: 13px;">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Ultima Calibracion</th>
+        <th scope="col">Certificado</th>
+        <th scope="col">Trazabilidad</th>
+        <th scope="col">Error Indicacion</th>
+        <th scope="col">Incertidumbre</th>
+        <th scope="col">Correcion Escala</th>
+        <th scope="col">Incertidumbre Escala</th>
+        <th scope="col">Factor Cubrimiento</th>
+        <th scope="col">Parametro Referencia</th>
+        <th scope="col">Proxima Calibracion</th>
+
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items" class="text-center">
+        <th scope="row">{{item.fecha_calibracion | date:'yyyy-MM-dd'}}</th>
+        <td>{{item.certificado}}</td>
+        <td>{{item.trazabilidad}}</td>
+        <td>{{item.error_indicacion}}</td>
+        <td>{{item.incertidumbre}}</td>
+        <td>{{item.correcion_escala}}</td>
+        <td>{{item.incertidumbre_escala}}</td>
+        <td>{{item.factor_cubrimiento}}</td>
+        <td>{{item.parametro_referencia}}</td>
+        <td>{{item.proxima | date:'yyyy-MM-dd'}}</td>
+        <td>
+          <ion-button (click)="delete(item._id)" size="small" color="primary">
+            <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+          </ion-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</ion-content>

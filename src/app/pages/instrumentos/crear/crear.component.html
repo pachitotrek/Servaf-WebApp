@@ -1,0 +1,268 @@
+<ion-content>
+  <div class="container-fluid m-0 p-0">
+    <ion-toolbar color="dark">
+      <ion-title>Crear un Nuevo Instrumento</ion-title>
+    </ion-toolbar>
+    <form [formGroup]="form">
+      <div class="container-fluid m-0 p-1">
+        <div class="row">
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Patron</label>
+              <div class="col-sm-6">
+                <input type="text" formControlName="patron" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Codigo Patron</label>
+              <div class="col-sm-6">
+                <input type="text" formControlName="codigo" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Serial</label>
+              <div class="col-sm-6">
+                <input type="text" formControlName="serial" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Certificado de Calibracion</label>
+              <div class="col-sm-6">
+                <input type="text" formControlName="certificado" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Fuente de Trazabilidad</label>
+              <div class="col-sm-6">
+                <input type="text" formControlName="fuente" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mt-2">
+            <div class="form-group row">
+              <label class="col-sm-6 mt-2">Fecha de calibracion</label>
+              <div class="col-sm-6">
+                <input type="date" formControlName="fecha_calibracion" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <ion-item>
+              <ion-label>Tipo de Instrumento</ion-label>
+              <ion-select placeholder="Seleccione Una" formControlName="instrumento"
+                (ionChange)="changeType($event.target.value)">
+                <ion-select-option *ngFor="let o of opciones" [value]="o.tipo">{{o.tipo}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div class="col-sm-2">
+            <ion-item>
+              <ion-button (click)="onClick()" expand="block" shape="round" slot="end" size="small">
+                otro
+              </ion-button>
+            </ion-item>
+          </div>
+          <div class="col-sm-6">
+            <ion-item>
+              <ion-label>Cantidad de Escalas</ion-label>
+              <ion-select placeholder="Seleccione Una" formControlName="escalas"
+                (ionChange)="escalas($event.target.value)">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </div>
+        <ion-toolbar color="dark">
+          <ion-title>Indicaciones de Escala</ion-title>
+        </ion-toolbar>
+        <div class="row">
+          <div class="col-sm-12" *ngIf="escalauno">
+            <ion-toolbar color="primary">
+              <ion-title>Escala Principal</ion-title>
+            </ion-toolbar>
+            <ion-toolbar>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-4 mt-2">
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <input type="text" class="form-control" aria-describedby="emailHelp"
+                          [value]="select.uno.propiedad" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <ion-label>1.Tipo de Indicador</ion-label>
+                      <ion-select placeholder="Seleccione Una" formControlName="tipo_uno">
+                        <ion-select-option *ngFor="let c of select.uno.clase" [value]="c">{{c}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <ion-label>2.Unidad</ion-label>
+                      <ion-select placeholder="Seleccione Una" formControlName="unidad_uno">
+                        <ion-select-option *ngFor="let u of select.uno.unidad" [value]="u.escala">{{u.escala}}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">2.Limite Inferior</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" formControlName="limite_inferior_uno"
+                          aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">2.Limite Superior</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" id="exampleInputEmail1"
+                          formControlName="limite_superior_uno" aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">3.Division de Escala</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" id="exampleInputEmail1"
+                          formControlName="division_escala_uno" aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-12">
+                    <ion-item>
+                      <label class="col-sm-3 mt-2 ml-0 p-0">4.Descripcion</label>
+                      <div class="col-sm-9 mt-1">
+                        <textarea class="form-control" formControlName="descripcion_uno" rows="4"></textarea>
+                      </div>
+                    </ion-item>
+                  </div>
+                </div>
+              </div>
+            </ion-toolbar>
+          </div>
+
+          <div class="col-sm-12" *ngIf="escalados">
+
+            <ion-toolbar color="medium">
+              <ion-title>Escala Secundaria</ion-title>
+            </ion-toolbar>
+            <ion-toolbar>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-4 mt-2">
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <input type="text" class="form-control" aria-describedby="emailHelp"
+                          [value]="select.dos.propiedad" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <ion-label>1.Tipo de Indicador</ion-label>
+                      <ion-select placeholder="Seleccione Una" formControlName="tipo_dos">
+                        <ion-select-option *ngFor="let c of select.dos.clase" [value]="c">{{c}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <ion-label>2.Unidad</ion-label>
+                      <ion-select placeholder="Seleccione Una" formControlName="unidad_dos">
+                        <ion-select-option *ngFor="let u of select.dos.unidad" [value]="u.escala">{{u.escala}}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">2.Limite Inferior</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" formControlName="limite_inferior_dos"
+                          aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">2.Limite Superior</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" id="exampleInputEmail1"
+                          formControlName="limite_superior_dos" aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-4">
+                    <ion-item>
+                      <label class="col-sm-6 mt-2 ml-0 p-0">3.Division de Escala</label>
+                      <div class="col-sm-6 mt-1">
+                        <input type="number" class="form-control" id="exampleInputEmail1"
+                          formControlName="division_escala_dos" aria-describedby="emailHelp">
+                      </div>
+                    </ion-item>
+                  </div>
+                  <div class="col-sm-12">
+                    <ion-item>
+                      <label class="col-sm-3 mt-2 ml-0 p-0">4.Descripcion</label>
+                      <div class="col-sm-9 mt-1">
+                        <textarea class="form-control" formControlName="descripcion_dos" rows="4"></textarea>
+                      </div>
+                    </ion-item>
+                  </div>
+                </div>
+              </div>
+            </ion-toolbar>
+
+
+          </div>
+        </div>
+
+
+
+
+
+        <ion-toolbar>
+
+          <ion-button (click)="crear()" color="primary" slot="end">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Guardar
+          </ion-button>
+
+        </ion-toolbar>
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </form>
+  </div>
+
+</ion-content>

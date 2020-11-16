@@ -1,0 +1,171 @@
+<ion-content>
+  <form action="" [formGroup]="form">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <ion-item color="primary">
+            <ion-label>Registre Nueva Calibracion</ion-label>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Patron</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="patron">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Serial</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="serial">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Codigo</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="codigo">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Certificado</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="certificado">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Fecha Calibracion</label>
+            <div class="col-sm-6">
+              <input type="date" class="form-control" id="inputPassword" formControlName="fecha_calibracion">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Proxima Calibracion</label>
+            <div class="col-sm-6">
+              <input type="date" class="form-control" id="inputPassword" formControlName="proxima">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Fuente Trazabilidad</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="trazabilidad">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Error de indicacion</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="error_indicacion">              
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.uno}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Error de indicacion anterior</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="error_indicacion_anterior">
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.dos}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Incertidumbre</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="incertidumbre">
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.tres}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Division de escala</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="division_escala">
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.cuatro}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Correcion de escala</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="correcion_escala">
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.cinco}}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Incertidumbre de escala</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="inputPassword" formControlName="incertidumbre_escala">
+            </div>
+            <div class="col-sm-1">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{a.seis}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Factor  de cubrimiento</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="factor_cubrimiento">
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-6 col-form-label">Parametro de Referencia</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="inputPassword" formControlName="parametro_referencia">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <ion-button (click)="save()" expand="block" color="primary">
+            Registrar
+          </ion-button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</ion-content>

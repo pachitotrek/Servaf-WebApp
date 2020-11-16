@@ -1,0 +1,105 @@
+<ion-content>
+  <form [formGroup]="form" class="mb-4">
+    <div class="container-fluid m-0 p-4">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="m-0 p-0">
+            <ion-item color="primary" lines="none">
+              <ion-label class="list-ios" style="margin: 0px !important;">Informacion General</ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ion-item lines="none"> 
+            <ion-label>Cliente</ion-label>
+            <ion-select placeholder="Seleccione" formControlName="cliente">
+              <ion-select-option *ngFor="let a of clientes" [value]="a._id">{{a.nombre}}</ion-select-option>            
+            </ion-select>
+          </ion-item>
+        </div>     
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">Año de Fabricacion</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="fabricacion" class="form-control">
+            </div>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>Marca Comercial</ion-label>      
+              <ion-select placeholder="Seleccione" formControlName="marca">
+                <ion-select-option *ngFor="let a of marcas" [value]="a._id">{{a.titulo}}</ion-select-option>            
+              </ion-select>
+            <ion-button (click)="addMarca()" expand="block" shape="round">
+              Otro
+            </ion-button>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>Modelo</ion-label>
+            <ion-select placeholder="Seleccione" formControlName="modelo">
+              <ion-select-option *ngFor="let a of modelos" [value]="a._id">{{a.titulo}}</ion-select-option>            
+            </ion-select>
+            <ion-button (click)="addModelo()" expand="block" shape="round">
+              Otro
+            </ion-button>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">Numero de Serie.</label>
+            <div class="col-sm-6 mt-1">
+              <input type="text" formControlName="serie" class="form-control">
+            </div>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <label class="col-sm-6 mt-2 ml-0 p-0">Lectura de Entrada.</label>
+            <div class="col-sm-6 mt-1">
+              <input type="number" formControlName="entrada" class="form-control">
+            </div>
+          </ion-item>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-sm-9">
+                <ion-item lines="none">
+                  <ion-label>Incidencias</ion-label>
+                  <ion-select multiple="true" cancelText="Cancel" okText="Ok" formControlName="incidencias">
+                    <ion-select-option *ngFor="let d of incidencias" [value]="d.titulo">{{d.titulo}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div class="col-sm-3">
+                <ion-button (click)="addIncidencia()" expand="block" shape="round" slot="end" size="small" class="mt-3">
+                  Otro
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <ion-item lines="none">
+            <ion-label>Apto para calibrar</ion-label>
+            <ion-select placeholder="Select One" formControlName="estado">
+              <ion-select-option value="true">Apto</ion-select-option>
+              <ion-select-option value="false">No Apto</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </div>
+   
+      <div class="col-sm-12 mt-2">
+        <ion-item button (click)="crear()" [disabled]="!form.valid" color="primary" text-center>
+          <ion-label>Actualizar Medidor</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+</ion-content>

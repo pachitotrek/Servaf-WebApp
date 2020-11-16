@@ -1,0 +1,53 @@
+<ion-content>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center mt-2">
+          <ion-item text-center color="primary">
+            <ion-label>Instrumentos Actuales</ion-label>
+          </ion-item>
+          <div class="text-center table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Patron</th>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Certificado</th>
+                  <th scope="col">Fuente</th>
+                  <th scope="col">Fecha de Calibracion</th>
+                  <th scope="col">Gestionar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of instrumentos">
+                  <th scope="row">{{item.patron}}</th>
+                  <td>{{item.codigo}}</td>
+                  <td>{{item.certificado}}</td>
+                  <td>{{item.fuente}}</td>
+                  <td>{{item.fecha_calibracion | date:'yyyy-MM-dd'}}</td>
+                  <td style="max-width: 130px;" text-center>
+                    <ion-button (click)="push(item)" size="small" color="primary">
+                      <ion-icon slot="icon-only" name="construct"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="look(item._id)" size="small" color="tertiary">
+                      <ion-icon slot="icon-only" name="search"></ion-icon>
+                    </ion-button>       
+                    <ion-button (click)="nav(item._id)" size="small" color="success">
+                      <ion-icon slot="icon-only" name="create"></ion-icon>
+                    </ion-button>             
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</ion-content>

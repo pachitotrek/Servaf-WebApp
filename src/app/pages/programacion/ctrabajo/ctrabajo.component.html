@@ -1,0 +1,349 @@
+<ion-content>
+  <div id="carta_landscape" *ngIf="status">
+
+    <!--Primer tabla-->
+    <table class="tablasup">
+      <tbody>
+        <tr>
+          <td colspan="4" rowspan="3"><img src="/assets/images/servaf.png" class="logo1 padding-y" alt="Logo de SERVAF"></td>
+          <td colspan="4" rowspan="3">ORDEN DE TRABAJO</td>
+          <td class="text-left border-right-0">Código:</td>
+          <td class="border-left-0 text-left" colspan="3">LCM-FOR-DT-059</td>
+        </tr>
+        <tr>
+          <td class="text-left border-right-0">Fecha:</td>
+          <td class="border-left-0 text-left" colspan="3">2018 Junio 13</td>
+        </tr>
+        <tr>
+          <td class="text-left border-right-0">Página:</td>
+          <td class="border-left-0 text-left" colspan="3">1 de 2</td>
+        </tr>
+        <tr>
+          <td class="border-0 padding-y" colspan="12">
+            <table class="mini">
+              <tbody>
+                <tr>
+                  <td colspan="12" class="border-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN BLANCO</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">N° de Orden:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.orden}}</td>
+                  <td colspan="2" class="border-0 padding-xs-y"></td>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Encargado:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.encargado?.nombre}} {{orden.encargado?.apellido}}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Creador:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.ordenante?.nombre}} {{orden.ordenante?.apellido}}</td>
+                  <td colspan="2" class="border-0 padding-xs-y"></td>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Inicio programado:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.fecha_programacion | date:'yyyy /MM /dd'}}: {{orden.hora_programacion | date:'hh:mm'}} </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Fecha de elaboración:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.fecha | date:'yyyy /MM /dd'}}
+                    16:40</td>
+                  <td colspan="2" class="border-0 padding-xs-y"></td>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Duración estimada:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.duracion}} minutos
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Tipo de ensayo:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">Calibración
+                  </td>
+                  <td colspan="2" class="border-0 padding-xs-y"></td>
+                  <td colspan="2" class="border-0 text-left padding-xs-y">Banco de calibración:</td>
+                  <td colspan="3"
+                    class="border-right-0 border-left-0 border-top-0 border-bottom text-left padding-xs-y">{{orden.banco?.identificacion}}</td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-bottom-0 upper text-left" style="padding: 10px 0 10px 0;">
+                    MEDIDORES</td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-top-0 border-bottom-0 white">ESPACIO INTENCIONALMENTE EN
+                    BLANCO</td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-top-0 border-bottom-0">
+                    <table class="mini2">
+                      <tbody>
+                        <tr>
+                          <td class="padding-y">Consecutivo</td>
+                          <td class="padding-y">Número de serie</td>
+                          <td class="padding-y">Orden de entrada</td>
+                        </tr>
+                        <tr *ngFor="let item of medidores">
+                          <td class="padding-xs-y">{{item.orden}}</td>
+                          <td class="padding-xs-y">{{item.datos?.serie}}</td>
+                          <td class="padding-xs-y">{{item.orden_entrada?.orden}}</td>
+                        </tr>                
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-bottom-0 upper text-left" style="padding: 20px 0 10px 0;">
+                    INSTRUMENTOS</td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-top-0 border-bottom-0">
+                    <table class="mini3">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" class="padding-y"><b>Prueba Caudal Minimo </b> </td>
+                          <td colspan="2" class="padding-y"><b>Serial</b></td>
+                          <td colspan="2" class="padding-y"><b>Indicador</b></td>
+                          <td colspan="3" class="padding-y"><b>Certificado calibración</b></td>
+                          <td colspan="2" class="padding-y"><b>Fecha calibración</b></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_caudal.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_caudal.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_caudal.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_caudal.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_caudal.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_humedad.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_humedad.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_humedad.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_humedad.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_humedad.fecha_calibracion}}</td>
+                        </tr>     
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_presion_entrada.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_presion_entrada.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_presion_entrada.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_presion_entrada.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_presion_entrada.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_presion_salida.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_presion_salida.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_presion_salida.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_presion_salida.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_presion_salida.fecha_calibracion}}</td>
+                        </tr>    
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_rvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_rvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_rvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_rvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_rvm.fecha_calibracion}}</td>
+                        </tr>  
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_t_entrada_agua.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_t_entrada_agua.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_t_entrada_agua.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_t_entrada_agua.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_t_entrada_agua.fecha_calibracion}}</td>
+                        </tr>   
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_temp_ambiente.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_temp_ambiente.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_temp_ambiente.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_temp_ambiente.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_temp_ambiente.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q1_temprvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q1_temprvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_temprvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q1_temprvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q1_temprvm.fecha_calibracion}}</td>
+                        </tr>
+                                                     
+                      </tbody>
+                    </table>      
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-top-0 border-bottom-0">
+                    <table class="mini3">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" class="padding-y"> <b> Prueba Caudal de Transicion </b> </td>
+                          <td colspan="2" class="padding-y"><b>Serial</b></td>
+                          <td colspan="2" class="padding-y"><b>Indicador</b></td>
+                          <td colspan="3" class="padding-y"><b>Certificado calibración</b></td>
+                          <td colspan="2" class="padding-y"><b>Fecha calibración</b></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_caudal.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_caudal.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_caudal.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_caudal.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_caudal.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_humedad.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_humedad.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_humedad.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_humedad.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_humedad.fecha_calibracion}}</td>
+                        </tr>     
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_presion_entrada.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_presion_entrada.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_presion_entrada.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_presion_entrada.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_presion_entrada.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_presion_salida.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_presion_salida.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_presion_salida.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_presion_salida.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_presion_salida.fecha_calibracion}}</td>
+                        </tr>    
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_rvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_rvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_rvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_rvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_rvm.fecha_calibracion}}</td>
+                        </tr>  
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_t_entrada_agua.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_t_entrada_agua.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_t_entrada_agua.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_t_entrada_agua.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_t_entrada_agua.fecha_calibracion}}</td>
+                        </tr>   
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_temp_ambiente.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_temp_ambiente.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_temp_ambiente.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_temp_ambiente.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_temp_ambiente.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q2_temprvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q2_temprvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_temprvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q2_temprvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q2_temprvm.fecha_calibracion}}</td>
+                        </tr>               
+                      </tbody>
+                    </table>      
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="12" class="border-0 border-top-0 border-bottom-0">
+                    <table class="mini3">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" class="padding-y"> <b>Prueba Caudal Nominal </b>  </td>
+                          <td colspan="2" class="padding-y"><b>Serial</b></td>
+                          <td colspan="2" class="padding-y"><b>Indicador</b></td>
+                          <td colspan="3" class="padding-y"><b>Certificado calibración</b></td>
+                          <td colspan="2" class="padding-y"><b>Fecha calibración</b></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_caudal.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_caudal.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_caudal.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_caudal.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_caudal.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_humedad.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_humedad.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_humedad.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_humedad.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_humedad.fecha_calibracion}}</td>
+                        </tr>     
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_presion_entrada.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_presion_entrada.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_presion_entrada.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_presion_entrada.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_presion_entrada.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_presion_salida.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_presion_salida.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_presion_salida.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_presion_salida.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_presion_salida.fecha_calibracion}}</td>
+                        </tr>    
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_rvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_rvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_rvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_rvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_rvm.fecha_calibracion}}</td>
+                        </tr>  
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_t_entrada_agua.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_t_entrada_agua.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_t_entrada_agua.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_t_entrada_agua.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_t_entrada_agua.fecha_calibracion}}</td>
+                        </tr>   
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_temp_ambiente.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_temp_ambiente.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_temp_ambiente.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_temp_ambiente.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_temp_ambiente.fecha_calibracion}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="padding-xs-y italic">{{q3_temprvm.patron}}</td>
+                          <td colspan="2" class="padding-xs-y upper">{{q3_temprvm.codigo}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_temprvm.escalas}}</td>
+                          <td colspan="3" class="padding-xs-y upper">{{q3_temprvm.certificado}}</td>
+                          <td colspan="2" class="padding-xs-y">{{q3_temprvm.fecha_calibracion}}</td>
+                        </tr>             
+                      </tbody>
+                    </table>      
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex-footer m-0 p-0" style="font-size: 9pt; text-align: center;">
+      <table class="footer">
+        <tbody>
+          <tr>
+            <td class="thead upper padding-y thead">ELABORÓ</td>
+            <td class="thead upper padding-y thead">REVISÓ</td>
+            <td class="thead upper padding-y thead">APROBÓ</td>
+            <td class="thead upper padding-y thead">VERSIÓN</td>
+          </tr>
+          <tr>
+            <td class="padding-xs-y upper">LUIS HERNÁN DURÁN GARCÍA</td>
+            <td class="padding-xs-y upper">EDGAR FERNANDO LOZANO CALDERÓN</td>
+            <td class="padding-xs-y upper">ALVARO TORRES CADENA</td>
+            <td class="padding-xs-y upper" rowspan="2">2</td>
+          </tr>
+          <tr>
+            <td class="padding-xs-y upper">COORDINADOR LABORATORIO CALIBRACIÓN<br> DE MEDIDORES</td>
+            <td class="padding-xs-y upper">DIRECTOR DE PLANEACIÓN Y CALIDAD</td>
+            <td class="padding-xs-y upper">GERENTES (S)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ion-content>
+
+<div class="row" id="noprint">
+  <div class="col-sm-12">
+    <ion-button (click)="print()" expand="block"  shape="round" color="primary">
+      Imprimir
+    </ion-button>
+  </div>
+</div>

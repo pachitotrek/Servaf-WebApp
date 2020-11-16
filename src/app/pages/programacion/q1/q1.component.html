@@ -1,0 +1,135 @@
+<div class="container-fluid">
+  <form action="" [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <ion-item>
+          <ion-label>Prueba {{tipo}} </ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-6">
+        <ion-item>
+          <ion-label>Repeticion No {{repeticion}} </ion-label>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Caudal</span>
+          </div>
+          <input type="number" class="form-control" formControlName="caudal">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">L/h</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Presion Entrada</span>
+          </div>
+          <input type="number" class="form-control" formControlName="pentrada">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">bar</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Presion Salida</span>
+          </div>
+          <input type="number" class="form-control" formControlName="psalida">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">bar</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp de la Linea</span>
+          </div>
+          <input type="number" class="form-control" formControlName="tempagua">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Temp RVM</span>
+          </div>
+          <input type="number" class="form-control" formControlName="temprvm">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Volumen RVM</span>
+          </div>
+          <input type="number" class="form-control" formControlName="volumenrvm">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">ml</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item lines="none">
+          <ion-label>Duracion de la prueba</ion-label>
+        </ion-item>
+      </div>
+      <div class="col-sm-4 mt-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Horas</span>
+          </div>
+          <input type="number" formControlName="horas" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-4 mt-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Minutos</span>
+          </div>
+          <input type="number" formControlName="minutos" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-4 mt-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Segundos</span>
+          </div>
+          <input type="number" class="form-control" formControlName="segundos">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ion-item button text-center color="primary" (click)="save()" [disabled]="!form.valid" *ngIf="!ready">
+          <ion-label>Guardar</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="col-sm-12" *ngIf="ready">
+    <div *ngFor="let item of medidores">
+      <app-me [id]="item" [data]=data></app-me>
+    </div>
+  </div>
+
+
+  <div class="col-sm-12" *ngIf="ready">
+    <ion-item button text-center color="primary" (click)="next()">
+      <ion-label>Continuar</ion-label>
+    </ion-item>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="col-sm-12" *ngIf="ready">
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Serial</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Año</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Apto</th>
+        <th scope="col" *ngIf="!conforme">Adjuntos</th>
+        <th scope="col">Certificado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  class="text-center">
+        <th scope="row">{{item.orden}}</th>
+        <td>{{item.datos.serie}}</td>
+        <td>{{item.datos.marca?.titulo}}</td>
+        <td>{{item.datos.modelo?.titulo}}</td>
+        <td>{{item.datos.fabricacion}}</td>
+        <td>{{item.metrologicas.principio}}</td>
+        <td>{{item.cliente?.nombre}}</td>
+        <td *ngIf="conforme">Si</td>
+        <td *ngIf="!conforme">No</td>
+        <td *ngIf="!conforme" class="p-0">
+          <ion-button (click)="upload(item._id)" size="small" color="tertiary">
+            <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+          </ion-button>
+        </td>
+        <td class="p-0" *ngIf="conforme">
+          <ion-button (click)="download(item._id)" size="small" color="primary">
+            <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+          </ion-button>
+        </td>
+        <td class="p-0" *ngIf="!conforme">
+          <ion-button (click)="go(item._id)" size="small" color="primary">
+            <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+          </ion-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

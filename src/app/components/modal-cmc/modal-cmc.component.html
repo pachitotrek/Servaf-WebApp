@@ -1,0 +1,22 @@
+<ion-content>
+  <div class="container m-0 p-0">
+    <div class="m-0 p-0">
+      <ion-item color="primary">
+        <ion-label>Actualizar CMC -  {{item.instrumento?.patron}}</ion-label>
+      </ion-item>
+    </div>
+    <div class="p-3">     
+      <form [formGroup]="form" class="mb-4" (ngSubmit)="crear()">
+        <div class="form-group">
+          <label>Valor del Error Minimo</label>
+          <input type="number" class="form-control" formControlName="error" aria-describedby="">
+          <small class="form-text text-muted">Error</small>
+        </div>   
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Actualizar</button>
+      </form>
+
+
+    </div>
+  </div>
+
+</ion-content>
